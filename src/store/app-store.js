@@ -8,8 +8,6 @@ export const useAppStore = defineStore('useAppStore', () => {
     const axios = computed(() =>{
         axiosInstance.interceptors.request.use(config => {
             config.headers['X-Lang-Header'] = 'ru'
-            //TODO create cookies
-            console.log(cookies['XSRF-TOKEN'])
             return config;
         }, error => {
             return Promise.reject(error);

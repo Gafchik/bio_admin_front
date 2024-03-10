@@ -18,7 +18,7 @@ export const useUserStore = defineStore('useUserStore', () => {
         })
             .then(response => {
                 console.log(response.data.data)
-                // faq.value = response.data.data;
+
             })
             .catch(error => {});
     }

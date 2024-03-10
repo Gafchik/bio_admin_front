@@ -29,13 +29,6 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
           label="Пароль"
           lazy-rules
       />
-      <q-input
-          filled
-          type="number"
-          v-model="code"
-          label="Код"
-          lazy-rules
-      />
     </q-card-section>
     <q-separator />
     <q-card-actions class="row justify-end">

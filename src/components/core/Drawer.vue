@@ -4,10 +4,13 @@ import {useI18n} from "vue-i18n";
 import router from "@/routes/router.js";
 const {t} = useI18n()
 import { useAppStore } from '@/store/app-store.js'
+import { useUserStore } from '@/store/common/user-store.js'
 import { storeToRefs } from 'pinia'
 const appStore = useAppStore()
+const userStore = useUserStore()
 const {} = appStore
 const {drawer} = storeToRefs(appStore)
+const {isLogin} = storeToRefs(userStore)
 
 function redirectTo(routeName){
   router.push({
@@ -19,7 +22,7 @@ function redirectTo(routeName){
 <template>
   <q-drawer
       v-model="drawer"
-      show-if-above
+      v-if="isLogin"
       :width="200"
       :breakpoint="500"
       bordered

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-
+import VueCookies from 'vue3-cookies'
 import "../src/modules/quasar.js"
 import { Quasar, Notify, Dialog } from 'quasar'
 
@@ -15,6 +15,7 @@ const myApp = createApp(App)
 
 myApp.use(pinia)
     .use(i18n)
+    .use(VueCookies)
     .use(router)
     .use(Quasar, {
     plugins: {

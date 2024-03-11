@@ -1,30 +1,24 @@
-import { defineStore } from 'pinia'
-import {ref,computed} from "vue";
-import { useI18n } from 'vue-i18n';
+import {defineStore, storeToRefs} from 'pinia'
+import {ref,computed, watch} from "vue";
 import axiosInstance from "@/modules/axios.js";
+import { useCookies } from "vue3-cookies";
 import router from "@/routes/router.js"
 export const useAppStore = defineStore('useAppStore', () => {
-    const cookies = computed(() => router.app.config.globalProperties)
+    const { cookies } = useCookies();
+   const jwt = computed(() => cookies.get('jwt'))
     const axios = computed(() =>{
         axiosInstance.interceptors.request.use(config => {
             config.headers['X-Lang-Header'] = 'ru'
+            if(!!jwt.value){
+                config.headers['Authorization'] = `Bearer ${jwt.value.value}`
+            }
             return config;
         }, error => {
             return Promise.reject(error);
         })
         return axiosInstance
     });
-    axios.value.get('sanctum/csrf-cookie')
-        .then(response => {})
-        .catch(error => {});
-    const drawer = ref(false)
-    async function login(email,password){
-        axios.value.post('/api/login')
-            .then(response => {
-                // faq.value = response.data.data;
-            })
-            .catch(error => {});
-    }
 
-    return { drawer,axios,login }
+    const drawer = ref(false)
+    return { drawer,axios }
 })

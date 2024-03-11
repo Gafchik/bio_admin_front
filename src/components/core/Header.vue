@@ -9,7 +9,9 @@ import {ref} from "vue";
 const appStore = useAppStore()
 const {} = appStore
 const {drawer} = storeToRefs(appStore)
-
+import { useUserStore } from '@/store/common/user-store.js'
+const userStore = useUserStore()
+const {isLogin} = storeToRefs(userStore)
 function redirectTo(routeName){
   router.push({
     name: routeName,
@@ -20,7 +22,7 @@ function redirectTo(routeName){
 <template>
   <q-header elevated class="bg-indigo-7">
     <q-toolbar>
-      <q-btn @click="drawer = !drawer" flat round dense icon="menu" class="q-mr-sm" />
+      <q-btn @click="drawer = !drawer" flat round dense icon="menu" class="q-mr-sm" v-if="isLogin" />
     </q-toolbar>
 
   </q-header>

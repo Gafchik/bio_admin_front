@@ -1,5 +1,5 @@
 <script setup>
-import {ref,computed} from "vue";
+import Goggle2FacDialog from "@/components/pages/Login/Goggle2FacDialog.vue"
 import { useUserStore } from '@/store/common/user-store.js'
 import { storeToRefs } from 'pinia'
 const userStore = useUserStore()
@@ -9,6 +9,9 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
 </script>
 
 <template>
+  <div>
+    <Goggle2FacDialog/>
+  </div>
   <q-card class="my-card q-mt-md" style="width: 50%">
     <q-card-section>
       <div class="text-h6">Вход</div>
@@ -37,6 +40,7 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
              label="Войти"
              color="primary"/>
     </q-card-actions>
+    <Goggle2FacDialog/>
   </q-card>
 </template>
 

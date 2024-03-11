@@ -12,14 +12,6 @@ const instance = axios.create({
 // Добавляем интерцептор для всех запросов
 instance.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8'
-    config.headers['Access-Control-Allow-Origin'] = '*';
-    // Notify.create({
-    //     spinner: true,
-    //     color: 'positive',
-    //     position: 'center',
-    //     message: '',
-    //     timeout: 2000
-    // });
     return config;
 }, error => {
     return Promise.reject(error);
@@ -35,6 +27,7 @@ instance.interceptors.response.use(response => {
         // Обработка ошибок
         if (error.response) {
             // Ошибка с ответом от сервера
+            console.log(error.response.data)
             const errorMessage = error.response.data.textError || 'Произошла ошибка';
             Notify.create({
                 color: 'negative',

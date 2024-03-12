@@ -5,12 +5,13 @@ import { useCookies } from "vue3-cookies";
 import router from "@/routes/router.js"
 export const useAppStore = defineStore('useAppStore', () => {
     const { cookies } = useCookies();
-   const jwt = computed(() => cookies.get('jwt'))
+
     const axios = computed(() =>{
         axiosInstance.interceptors.request.use(config => {
             config.headers['X-Lang-Header'] = 'ru'
-            if(!!jwt.value){
-                config.headers['Authorization'] = `Bearer ${jwt.value.value}`
+            let jwt = cookies.get('jwt')
+            if(!!jwt){
+                config.headers['Authorization'] = `Bearer ${jwt}`
             }
             return config;
         }, error => {
@@ -20,5 +21,13 @@ export const useAppStore = defineStore('useAppStore', () => {
     });
 
     const drawer = ref(false)
-    return { drawer,axios }
+    const selectedMainMenu = ref(null)
+    function redirectTo(routeName){
+        if(!!routeName){
+            router.push({
+                name: routeName,
+            })
+        }
+    }
+    return { drawer,axios,selectedMainMenu,redirectTo}
 })

@@ -1,31 +1,29 @@
 <script setup>
-import { ref } from 'vue'
-import {useI18n} from "vue-i18n";
-const {t} = useI18n()
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
+import menu from "@/constants/main-menu.js"
+import { useAppStore } from '@/store/app-store.js'
+import { useUserStore } from '@/store/common/user-store.js'
+import { storeToRefs } from 'pinia'
+const appStore = useAppStore()
+const userStore = useUserStore()
+const {redirectTo} = appStore
+const {drawer,selectedMainMenu} = storeToRefs(appStore)
+const {isLogin} = storeToRefs(userStore)
 </script>
 
 <template>
-  <q-page class="q-pa-md bg-green-1">
-    <q-btn
-        @click="$q.notify('My message')"
-        color="primary"
-        label="Show a notification"
-    />
-    <q-icon name="done" />
-    <q-btn
-        color="primary"
-        label="Show another notification"
+  <q-page class="w-100 q-mt-md">
+    <q-tree
+        :nodes="menu"
+        node-key="route_name"
+        label-key="label"
+        selected-color="primary"
+        v-model:selected="selectedMainMenu"
+        @update:selected="redirectTo"
+        default-expand-all
     />
   </q-page>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
-}
+
 </style>

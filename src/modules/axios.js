@@ -27,8 +27,7 @@ instance.interceptors.response.use(response => {
         // Обработка ошибок
         if (error.response) {
             // Ошибка с ответом от сервера
-            console.log(error.response.data)
-            const errorMessage = error.response.data.textError || 'Произошла ошибка';
+            const errorMessage = error.response.data.textError || 'Произошла ошибка попробуйте обновить страницу';
             Notify.create({
                 color: 'negative',
                 message: errorMessage,
@@ -55,7 +54,7 @@ instance.interceptors.response.use(response => {
                 html: true,
             });
         }
-        return Promise.reject(error);
+        return error;
     }
 );
 

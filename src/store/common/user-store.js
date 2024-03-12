@@ -15,7 +15,7 @@ export const useUserStore = defineStore('useUserStore', () => {
     const jwt = ref('')
     const jwtType = ref('')
     const qr = ref('')
-    const isLogin = computed(() => cookies.get('jwt'))
+    const isLogin = computed(() => !!cookies.get('jwt'))
     const google2facDialog = ref(false)
     const has2fac = ref(false)
     const disableSubmit = computed(() => !email.value.length || !password.value.length)
@@ -34,6 +34,18 @@ export const useUserStore = defineStore('useUserStore', () => {
             })
             .catch(error => {});
     }
+    async function logout(){
+        axios.value.post('/api/logout',{},{
+        })
+            .then(response => {
+                cookies.remove('jwt',)
+                router.go('/')
+            })
+            .catch(error => {
+                cookies.remove('jwt',)
+                router.go('/')
+            });
+    }
     async function sendGoogle2fac(codeValue = '') {
         if(!has2fac.value){
             has2fac.value = true
@@ -47,20 +59,18 @@ export const useUserStore = defineStore('useUserStore', () => {
                 }
             })
                 .then(response => {
+                    let t = new Date();
+                    t.setSeconds(t.getSeconds() + 10800);
+                    cookies.set('jwt',jwt.value,t)
                     google2facDialog.value = false
-                    cookies.set('jwt',{
-                        value: jwt.value,
-                        expiry: '10800s',
-                    })
                     router.go('/')
                 })
                 .catch(error => {});
         }
-
     }
 
     return {
         email,password,disableSubmit,loginAsync,jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog,
-        qr,has2fac,
+        qr,has2fac,logout
     }
 })

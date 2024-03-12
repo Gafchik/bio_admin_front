@@ -14,7 +14,7 @@ const {code,google2facDialog,qr,has2fac} = storeToRefs(userStore)
       </q-card-section>
 
       <q-card-section v-show="!has2fac" class="q-mt-md row justify-center content-center">
-        <div v-html="qr"></div>
+        <q-img width="80%" :src="qr"></q-img>
       </q-card-section>
       <q-card-section v-show="has2fac" class="q-mt-md row justify-center content-center">
         <q-input

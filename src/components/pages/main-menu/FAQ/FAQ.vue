@@ -4,55 +4,94 @@ import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 const {t} = useI18n()
 const faqStore = useFaqStore()
-const {getFaq,selectCategory} = faqStore
-const {category,question,selectedCategoryId} = storeToRefs(faqStore)
-const TRANC_PREFIX = 'pages.faq'
+const {getFaq} = faqStore
+const {faqData} = storeToRefs(faqStore)
 getFaq();
-
+const columns = [
+  {
+    name: 'id',
+    required: true,
+    label: 'id',
+    align: 'center',
+    field: row => row.id,
+    format: val => `${val}`,
+    sortable: true
+  },
+  {
+    name: 'position',
+    required: true,
+    label: 'Позиция',
+    align: 'center',
+    field: row => row.position,
+    format: val => `${val}`,
+    sortable: true
+  },
+  {
+    name: 'category',
+    required: true,
+    label: 'Категории',
+    align: 'center',
+    field: row => row.name,
+    sortable: false
+  },
+  {
+    name: 'created_at',
+    required: true,
+    label: 'Создано',
+    align: 'center',
+    field: row => row.created_at,
+    format: val => `${val}`,
+    sortable: true
+  },
+  {
+    name: 'updated_at',
+    required: true,
+    label: 'Обновлено',
+    align: 'center',
+    field: row => row.updated_at,
+    format: val => `${val}`,
+    sortable: true
+  },
+]
+function changeCategoryTans(locale,value){
+  alert(locale,value)
+}
 </script>
 
 <template>
-  <div>
-    <div v-if="!category.length">
-      <h1>Сорян мы не успели перевести на это локаль =)</h1>
-    </div>
-    <div v-else>
-      <div :class="{'flex-column': $q.platform.is.mobile, 'row wrap q-mt-lg': !$q.platform.is.mobile}">
-        <div class="col-4 q-px-lg q-mb-lg">
-          <div class="text-center text-bold q-mx-lg-md">
-            {{t(`${TRANC_PREFIX}.select_section`)}}
-          </div>
-          <div v-for="(value,key) in category"
-               class="my-card text-light-green-8 text-center text-bold"
-          >
-            <q-btn @click="selectCategory(value.faq_category_id)"
-                   :disable="selectedCategoryId === value.faq_category_id"
-                  text
-                  text-color="light-green-8"
-                  class="full-width"
-                  :label="value.name" />
-          </div>
-        </div>
-        <div class="col-8 q-px-lg">
-          <q-expansion-item v-for="value in question"
-                            expand-separator
-                            class="q-mb-lg bg-grey-2"
-                            icon="question_mark"
-                            :label="value.question"
-                            header-class="text-light-green-8 text-start text-bold"
-          >
-            <q-card>
-              <q-card-section v-html="value.answer"/>
-            </q-card>
-          </q-expansion-item>
-        </div>
-      </div>
-    </div>
-  </div>
+  <q-table
+      class="q-my-md"
+      title="FAQ"
+      :rows="faqData"
+      :columns="columns"
+      row-key="name"
+      hide-bottom
+      dense
+      bordered
+      separator="cell"
+  >
+    <template v-slot:body-cell-category="props">
+        <q-tr v-for="trans in props.row.trans"
+              :props="props"
+              :key="trans.id">
+          <q-td>
+            <q-tr>{{'Локаль: '+ trans.locale}}</q-tr>
+            <q-tr>
+              {{'Перевод: '}}
+              <span v-if="!!trans.name">{{trans.name}}</span>
+              <b class="text-red" v-else>Нет перевода</b>
+              <q-popup-edit v-model="trans.name" v-slot="scope" class="row">
+                <q-input lable="Перевод" v-model="scope.value" autofocus />
+                <q-btn flat color="positive" icon="done" @click="changeCategoryTans(trans.locale,scope.value)" />
+              </q-popup-edit>
+            </q-tr>
+          </q-td>
+        </q-tr>
+
+    </template>
+  </q-table>
 </template>
 
 <style scoped>
-.q-btn:before {
-  box-shadow: none !important;
-}
+
 </style>

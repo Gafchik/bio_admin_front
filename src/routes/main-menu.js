@@ -4,7 +4,8 @@ import TermsOfUse from '@/components/pages/main-menu/TermsOfUse/TermsOfUse.vue';
 import News from '@/components/pages/main-menu/News/News.vue';
 import AboutUs from '@/components/pages/main-menu/AboutUs/AboutUs.vue';
 import HowItWorks from '@/components/pages/main-menu/HowItWorks/HowItWorks.vue';
-import FAQ from '@/components/pages/main-menu/FAQ/FAQ.vue';
+import FaqCategory from '@/components/pages/main-menu/FAQ/Category/FaqCategory.vue';
+import FaqQuestion from '@/components/pages/main-menu/FAQ/Question/FaqQuestion.vue';
 import Store from '@/components/pages/main-menu/Store/Store.vue';
 export default [
     {
@@ -38,9 +39,14 @@ export default [
         name: 'how_it_works',
     },
     {
-        path: '/faq',
-        component: FAQ,
-        name: 'faq',
+        path: '/faq-category',
+        component: FaqCategory,
+        name: 'faq_category',
+    },
+    {
+        path: '/faq-question',
+        component: FaqQuestion,
+        name: 'faq_question',
     },
     {
         path: '/store',

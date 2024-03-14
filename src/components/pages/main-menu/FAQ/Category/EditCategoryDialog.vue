@@ -18,7 +18,7 @@ const disableSubmit = computed(() => {
 </script>
 
 <template>
-  <q-dialog v-model="editCategoryDialog" persistent>
+  <q-dialog v-model="editCategoryDialog" persistent full-width>
     <q-card>
       <q-card-section class="bg-indigo-7">
         <div class="text-h6">Редактирование категории {{editItemCategory.label}}</div>
@@ -26,9 +26,9 @@ const disableSubmit = computed(() => {
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
         <b>Не все поля заполнены!</b>
       </div>
-      <q-card-section class="q-mt-md justify-center content-center scroll" style="max-height: 50vh">
+      <q-card-section class="q-mt-md justify-center content-center scroll">
         <q-input
-            class="q-my-lg"
+            class="q-my-xs"
             filled
             type="number"
             v-model="editItemCategory.position"
@@ -36,28 +36,28 @@ const disableSubmit = computed(() => {
         />
         <q-toggle v-model="editItemCategory.status" label="Статус" />
         <q-input
-            class="q-my-lg"
+            class="q-my-xs"
             filled
             type="text"
             v-model="editItemCategory.ru"
             label="Название русский"
         />
         <q-input
-            class="q-my-lg"
+            class="q-my-xs"
             filled
             type="text"
             v-model="editItemCategory.uk"
             label="Название украинский"
         />
         <q-input
-            class="q-my-lg"
+            class="q-my-xs"
             filled
             type="text"
             v-model="editItemCategory.en"
             label="Название ангийский"
         />
         <q-input
-            class="q-my-lg"
+            class="q-my-xs"
             filled
             type="text"
             v-model="editItemCategory.ge"

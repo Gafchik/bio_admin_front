@@ -11,7 +11,9 @@ export const useFaqStore = defineStore('useFaqStore', () => {
     const {openDialogConfirm} = useDialogConfirmStore()
     const category = ref([])
     const editItemCategory = ref({})
+    const editItemQuestion = ref({})
     const editCategoryDialog = ref(false)
+    const editQuestionDialog = ref(false)
     const addCategoryDialog = ref(false)
     const question = ref([])
     const addItemCategory = ref({
@@ -22,16 +24,10 @@ export const useFaqStore = defineStore('useFaqStore', () => {
         en: '',
         ge: '',
     })
-    async function getFaqCategory(){
-        axios.value.post('/api/faq/get-category')
+    async function getFaq(){
+        axios.value.post('/api/faq/get')
             .then(response => {
                 category.value = response.data.data.category;
-            })
-            .catch(error => {});
-    }
-    async function getFaqQuestion(){
-        axios.value.post('/api/faq/get-question')
-            .then(response => {
                 question.value = response.data.data.faq;
             })
             .catch(error => {});
@@ -157,9 +153,41 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             })
             .catch(error => {});
     }
+    function deleteQuestion(item){
+        console.log(item)
+    }
+    function editQuestion(item){
+        editItemQuestion.value = {
+            id: item.id,
+            faq_category_id: item.faq_category_id,
+            label: item.question,
+            position: item.position,
+            status: !!item.status,
+            ru_question: item.ru.question,
+            uk_question: item.uk.question,
+            en_question: item.en.question,
+            ge_question: item.ge.question,
+            ru_answer: item.ru.answer,
+            uk_answer: item.uk.answer,
+            en_answer: item.en.answer,
+            ge_answer: item.ge.answer,
+        }
+        editQuestionDialog.value = true
+    }
+    function saveEditQuestion(){
+        console.log(editItemQuestion)
+    }
+    function closeEditQuestionDialog(){
+        editItemQuestion.value = {}
+        editQuestionDialog.value = false
+    }
+    function addQuestion(){
+        console.log('jnjn')
+    }
     return {
-        getFaqCategory,category,question, deleteCategory, editCategory, addCategory,editItemCategory,editCategoryDialog,
+        getFaq,category,question, deleteCategory, editCategory, addCategory,editItemCategory,editCategoryDialog,
         saveEditCategory,closeEditCategoryDialog,addCategoryDialog,saveAddCategory,addItemCategory,
-        closeAddDialog,getFaqQuestion
+        closeAddDialog,deleteQuestion,editQuestion,addQuestion, saveEditQuestion,
+        closeEditQuestionDialog, editItemQuestion, editQuestionDialog
     }
 })

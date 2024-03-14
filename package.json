@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.9",
+    "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.6.7",
     "pinia": "^2.1.7",
     "quasar": "^2.14.6",

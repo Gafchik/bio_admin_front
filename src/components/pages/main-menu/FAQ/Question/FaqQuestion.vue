@@ -1,20 +1,20 @@
 <script setup>
-import EditCategoryDialog from "@/components/pages/main-menu/FAQ/Category/EditCategoryDialog.vue"
+import EditQuestionDialog from "@/components/pages/main-menu/FAQ/Question/EditQuestionDialog.vue"
 import AddCategoryDialog from "@/components/pages/main-menu/FAQ/Category/AddCategoryDialog.vue"
 import DialogConfirm from "@/components/common/DialogConfirm.vue"
-import { ref } from 'vue'
+import { ref} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 const {t} = useI18n()
 const faqStore = useFaqStore()
-const {getFaqQuestion,deleteCategory, editCategory, addCategory} = faqStore
+const {getFaq,deleteQuestion, editQuestion, addQuestion} = faqStore
 const {question} = storeToRefs(faqStore)
 const searchCat = ref('')
 const pagination = ref({
   rowsPerPage: 10
 })
-getFaqQuestion();
+getFaq();
 const faq_columns = [
   {
     name: 'id',
@@ -94,6 +94,7 @@ const faq_columns = [
     align: 'center',
   },
 ]
+
 </script>
 
 <template>
@@ -113,7 +114,7 @@ const faq_columns = [
     >
       <template v-slot:top-right>
         <q-btn
-            @click="addCategory"
+            @click="addQuestion"
             icon="add"
             flat
             color="blue"/>
@@ -131,8 +132,8 @@ const faq_columns = [
       </template>
       <template v-slot:body-cell-action="props">
         <q-td>
-          <q-btn flat dense color="blue" icon="edit" @click="editCategory(props.row)"/>
-          <q-btn flat dense color="red" icon="delete" @click="deleteCategory(props.row)"/>
+          <q-btn flat dense color="blue" icon="edit" @click="editQuestion(props.row)"/>
+          <q-btn flat dense color="red" icon="delete" @click="deleteQuestion(props.row)"/>
         </q-td>
       </template>
       <template v-slot:body-cell-question="props">
@@ -172,8 +173,8 @@ const faq_columns = [
                     <q-item-label>{{ col.label }}</q-item-label>
                   </q-item-section>
                   <q-item-section side>
-                    <q-btn flat dense color="blue" icon="edit" @click="editCategory(props.row)"/>
-                    <q-btn flat dense color="red" icon="delete" @click="deleteCategory(props.row)"/>
+                    <q-btn flat dense color="blue" icon="edit" @click="editQuestion(props.row)"/>
+                    <q-btn flat dense color="red" icon="delete" @click="deleteQuestion(props.row)"/>
                   </q-item-section>
                 </template>
                 <template v-else-if="col.name === 'question'">
@@ -210,7 +211,7 @@ const faq_columns = [
         </div>
       </template>
     </q-table>
-    <EditCategoryDialog/>
+    <EditQuestionDialog/>
     <AddCategoryDialog/>
     <DialogConfirm/>
   </div>

@@ -8,10 +8,10 @@ import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 const {t} = useI18n()
 const faqStore = useFaqStore()
-const {getFaqCategory,deleteCategory, editCategory, addCategory} = faqStore
+const {getFaq,deleteCategory, editCategory, addCategory} = faqStore
 const {category,faq} = storeToRefs(faqStore)
 const searchCat = ref('')
-getFaqCategory();
+getFaq();
 const category_columns = [
   {
     name: 'id',
@@ -83,7 +83,6 @@ const category_columns = [
             :rows="category"
             :columns="category_columns"
             row-key="name"
-            hide-bottom
             :filter="searchCat"
             dense
             :grid="$q.platform.is.mobile"

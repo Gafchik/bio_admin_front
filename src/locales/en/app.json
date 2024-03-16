@@ -1,8 +1,12 @@
 {
+ "search": "Search",
  "locale": {
   "uk": "Ukrainian",
   "ru":"Russian",
   "en": "English",
   "ge": "Georgian"
- }
+ },
+ "session_daed": "Session lifetime has expired, Refresh the page and log in",
+ "server_not_response": "No response from server",
+ "request_error": "Error setting up request"
 }

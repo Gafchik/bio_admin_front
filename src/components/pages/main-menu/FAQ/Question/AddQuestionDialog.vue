@@ -7,20 +7,20 @@ import {toolbarOptions} from "@/constants/quill-editor-toolbar.js";
 import {useAppStore} from "@/store/app-store.js";
 const {t} = useI18n()
 const faqStore = useFaqStore()
-const {saveEditQuestion,closeEditQuestionDialog} = faqStore
-const {editItemQuestion,editQuestionDialog,category} = storeToRefs(faqStore)
+const {saveAddQuestion,closeAddQuestionDialog} = faqStore
+const {addQuestionDialog,addItemQuestion,category} = storeToRefs(faqStore)
 const code = ref('')
 const disableSubmit = computed(() => {
-  return !editItemQuestion.value.position.toString()
-      || !editItemQuestion.value.faq_category_id
-      || !editItemQuestion.value.ru_question.length
-      || !editItemQuestion.value.uk_question.length
-      || !editItemQuestion.value.en_question.length
-      || !editItemQuestion.value.ge_question.length
-      || !editItemQuestion.value.ru_answer.length
-      || !editItemQuestion.value.uk_answer.length
-      || !editItemQuestion.value.en_answer.length
-      || !editItemQuestion.value.ge_answer.length
+  return !addItemQuestion.value.position.toString()
+      || !addItemQuestion.value.faq_category_id
+      || !addItemQuestion.value.ru_question.length
+      || !addItemQuestion.value.uk_question.length
+      || !addItemQuestion.value.en_question.length
+      || !addItemQuestion.value.ge_question.length
+      || !addItemQuestion.value.ru_answer.length
+      || !addItemQuestion.value.uk_answer.length
+      || !addItemQuestion.value.en_answer.length
+      || !addItemQuestion.value.ge_answer.length
 })
 const TRANC_PREFIX = 'pages.faq.question.dialog'
 const appStore = useAppStore()
@@ -28,7 +28,7 @@ const {currentLocale} = storeToRefs(appStore)
 </script>
 
 <template>
-  <q-dialog v-model="editQuestionDialog" persistent full-width>
+  <q-dialog v-model="addQuestionDialog" persistent full-width>
     <q-card>
       <q-card-section class="bg-indigo-7">
         <div class="text-h6">
@@ -47,7 +47,7 @@ const {currentLocale} = storeToRefs(appStore)
             option-value="id"
             :option-label="currentLocale === 'ru' ? 'label_ru' : 'label_en'"
             :label="t(`${TRANC_PREFIX}.category_select`)"
-            v-model="editItemQuestion.faq_category_id"
+            v-model="addItemQuestion.faq_category_id"
             :options="category"
         >
         </q-select>
@@ -55,38 +55,38 @@ const {currentLocale} = storeToRefs(appStore)
             class="q-my-xs"
             filled
             type="text"
-            v-model="editItemQuestion.position"
-           :label="t(`${TRANC_PREFIX}.position`)"
+            v-model="addItemQuestion.position"
+            :label="t(`${TRANC_PREFIX}.position`)"
         />
         <q-toggle
-            v-model="editItemQuestion.status"
+            v-model="addItemQuestion.status"
             :label="t(`${TRANC_PREFIX}.status`)" />
         <q-input
             class="q-my-xs"
             filled
             type="text"
-            v-model="editItemQuestion.ru_question"
+            v-model="addItemQuestion.ru_question"
             :label="t(`${TRANC_PREFIX}.question_ru`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
-            v-model="editItemQuestion.uk_question"
+            v-model="addItemQuestion.uk_question"
             :label="t(`${TRANC_PREFIX}.question_ua`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
-            v-model="editItemQuestion.en_question"
+            v-model="addItemQuestion.en_question"
             :label="t(`${TRANC_PREFIX}.question_en`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
-            v-model="editItemQuestion.ge_question"
+            v-model="addItemQuestion.ge_question"
             :label="t(`${TRANC_PREFIX}.question_ge`)"
         />
         <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ru`)}}</div>
@@ -96,7 +96,7 @@ const {currentLocale} = storeToRefs(appStore)
             :toolbar="toolbarOptions"
             theme="snow"
             contentType="html"
-            v-model:content="editItemQuestion.ru_answer"  />
+            v-model:content="addItemQuestion.ru_answer"  />
         <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ua`)}}</div>
         <QuillEditor
             class="q-my-xs"
@@ -104,7 +104,7 @@ const {currentLocale} = storeToRefs(appStore)
             :toolbar="toolbarOptions"
             theme="snow"
             contentType="html"
-            v-model:content="editItemQuestion.uk_answer"  />
+            v-model:content="addItemQuestion.uk_answer"  />
         <div class="text-center">{{t(`${TRANC_PREFIX}.answer_en`)}}</div>
         <QuillEditor
             class="q-my-xs"
@@ -112,7 +112,7 @@ const {currentLocale} = storeToRefs(appStore)
             :toolbar="toolbarOptions"
             theme="snow"
             contentType="html"
-            v-model:content="editItemQuestion.en_answer"  />
+            v-model:content="addItemQuestion.en_answer"  />
         <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ge`)}}</div>
         <QuillEditor
             class="q-my-xs"
@@ -120,19 +120,19 @@ const {currentLocale} = storeToRefs(appStore)
             :toolbar="toolbarOptions"
             theme="snow"
             contentType="html"
-            v-model:content="editItemQuestion.ge_answer"  />
+            v-model:content="addItemQuestion.ge_answer"  />
       </q-card-section>
 
       <q-card-actions align="right">
         <q-btn
-            @click="closeEditQuestionDialog"
+            @click="closeAddQuestionDialog"
             icon="close"
             flat
             color="red"/>
         <q-btn
             :disable="disableSubmit"
             icon="done"
-            @click="saveEditQuestion"
+            @click="saveAddQuestion"
             flat
             color="positive"/>
       </q-card-actions>

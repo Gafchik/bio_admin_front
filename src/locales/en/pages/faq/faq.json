@@ -1,3 +1,90 @@
 {
-  "select_section": "Select a section"
+  "categories": {
+    "title": "FAQ categories",
+    "table_headers": {
+      "id": "id",
+      "label":"Title",
+      "position": "Position",
+      "status":"Status",
+      "created_at": "Created",
+      "updated_at":"Updated",
+      "action": "Action"
+    },
+    "dialog": {
+      "edit_title": "Editing category",
+      "add_title": "Adding a category",
+      "not_valid": "Not all fields are filled in!",
+      "position":"Position",
+      "status": "Status",
+      "name_ru": "Name Russian",
+      "name_ua":"Name Ukrainian",
+      "name_en":"Name English",
+      "name_ge": "Name Georgian"
+    },
+    "confirm": {
+      "delete": {
+        "title": "Delete category",
+        "text": "Are you sure you want to delete the category \"{name}\" ?",
+        "success": "Category deleted successfully"
+      },
+      "edit": {
+        "title": "Saving changes",
+        "text": "Are you sure you want to save the category ?",
+        "success": "Category changed successfully"
+      },
+      "add": {
+        "title": "Saving new category",
+        "text": "Are you sure you want to add a category ?",
+        "success": "Category added successfully"
+      }
+    }
+  },
+  "question": {
+    "title": "FAQ questions answers",
+    "category_select": "Select a category",
+    "table_headers": {
+      "id": "id",
+      "label":"Title",
+      "position": "Position",
+      "status":"Status",
+      "created_at": "Created",
+      "updated_at":"Updated",
+      "action": "Action",
+      "category_name": "Category name",
+      "question": "Question",
+      "answer": "Answer"
+    },
+    "dialog": {
+      "category_select": "Select a category",
+      "edit_title": "Editing answer question",
+      "not_valid": "Not all fields are filled in!",
+      "position":"Position",
+      "status": "Status",
+      "question_ru": "Russian question",
+      "question_ua":"Ukrainian question",
+      "question_en":"English question",
+      "question_ge": "Georgian question",
+      "answer_ru": "The answer is Russian",
+      "answer_ua":"Ukrainian answer",
+      "answer_en":"Answer is English",
+      "answer_ge": "The answer is Georgian"
+    },
+    "confirm": {
+      "delete": {
+        "title": "Deleting an answer question",
+        "text": "Are you sure you want to delete the question and answer?",
+        "success": "Question answer successfully deleted"
+      },
+      "edit": {
+        "title": "Saving changes",
+        "text": "Are you sure you want to save the question and answer?",
+        "success": "Question answer successfully changed"
+      },
+      "add": {
+        "title": "Saving a new answer question",
+        "text": "Are you sure you want to add a question and answer?",
+        "success": "Question answer added successfully"
+      }
+    }
+  }
 }

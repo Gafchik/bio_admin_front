@@ -1,0 +1,8 @@
+{
+  "email": "Email",
+  "password": "password",
+  "login": "login",
+  "header" : "Entrance",
+  "header2fa": "Two-factor authentication",
+  "code2fa": "Code"
+}

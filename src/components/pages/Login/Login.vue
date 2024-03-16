@@ -1,11 +1,13 @@
 <script setup>
 import Goggle2FacDialog from "@/components/pages/Login/Goggle2FacDialog.vue"
-import { useUserStore } from '@/store/common/user-store.js'
+import { useAppStore } from '@/store/app-store.js'
+const appStore = useAppStore()
 import { storeToRefs } from 'pinia'
-const userStore = useUserStore()
-const {loginAsync} = userStore
-const {email,password,disableSubmit,code} = storeToRefs(userStore)
-
+const {loginAsync} = appStore
+const {email,password,disableSubmit,code} = storeToRefs(appStore)
+import {useI18n} from "vue-i18n";
+const {t} = useI18n()
+const TRANC_PREFIX = 'pages.login'
 </script>
 
 <template>
@@ -14,14 +16,14 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
   </div>
   <q-card class="my-card q-mt-md" style="width: 50%">
     <q-card-section>
-      <div class="text-h6">Вход</div>
+      <div class="text-h6">{{t(`${TRANC_PREFIX}.header`)}}</div>
     </q-card-section>
     <q-card-section>
       <q-input
           filled
           type="email"
           v-model="email"
-          label="E-mail"
+          :label="t(`${TRANC_PREFIX}.email`)"
           lazy-rules
       />
       <q-input
@@ -29,7 +31,7 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
           filled
           type="password"
           v-model="password"
-          label="Пароль"
+          :label="t(`${TRANC_PREFIX}.password`)"
           lazy-rules
       />
     </q-card-section>
@@ -37,7 +39,7 @@ const {email,password,disableSubmit,code} = storeToRefs(userStore)
     <q-card-actions class="row justify-end">
       <q-btn :disable="disableSubmit"
              @click="loginAsync"
-             label="Войти"
+             :label="t(`${TRANC_PREFIX}.login`)"
              color="primary"/>
     </q-card-actions>
     <Goggle2FacDialog/>

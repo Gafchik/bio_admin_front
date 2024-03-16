@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Notify } from 'quasar'; // Импортируем компонент Notify из Quasar
 
 // Создаем экземпляр Axios
 const instance = axios.create({
@@ -8,55 +7,6 @@ const instance = axios.create({
     withCredentials: true // Разрешить передачу куки и заголовков авторизации в запросах
 });
 
-
-// Добавляем интерцептор для всех запросов
-instance.interceptors.request.use(config => {
-    config.headers['Content-Type'] = 'application/json;charset=utf-8'
-    return config;
-}, error => {
-    return Promise.reject(error);
-});
-
-
-// Перехватчик для обработки успешных ответов
-instance.interceptors.response.use(response => {
-        // Вернуть ответ, как есть
-        return response;
-    },
-    error => {
-        // Обработка ошибок
-        if (error.response) {
-            // Ошибка с ответом от сервера
-            const errorMessage = error.response.data.textError || 'Произошла ошибка попробуйте обновить страницу';
-            Notify.create({
-                color: 'negative',
-                message: errorMessage,
-                progress: true,
-                position: 'top',
-                html: true,
-            });
-        } else if (error.request) {
-            // Запрос был сделан, но нет ответа
-            Notify.create({
-                color: 'negative',
-                message: 'Нет ответа от сервера',
-                progress: true,
-                position: 'top',
-                html: true,
-            });
-        } else {
-            // Произошла ошибка настройки запроса
-            Notify.create({
-                color: 'negative',
-                message: 'Ошибка настройки запроса',
-                progress: true,
-                position: 'top',
-                html: true,
-            });
-        }
-        return error;
-    }
-);
 
 // Экспортируем созданный экземпляр Axios
 export default instance;

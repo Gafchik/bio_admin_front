@@ -3,10 +3,13 @@ import { ref, computed} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
+import {useAppStore} from "@/store/app-store.js";
 const {t} = useI18n()
 const faqStore = useFaqStore()
 const {saveAddCategory,closeAddDialog} = faqStore
 const {addItemCategory,addCategoryDialog} = storeToRefs(faqStore)
+const appStore = useAppStore()
+const {currentLocale} = storeToRefs(appStore)
 
 const disableSubmit = computed(() => {
   return !addItemCategory.value.position.toString()
@@ -15,17 +18,17 @@ const disableSubmit = computed(() => {
       || !addItemCategory.value.en.length
       || !addItemCategory.value.ge.length
 })
-
+const TRANC_PREFIX = 'pages.faq.categories.dialog'
 </script>
 
 <template>
   <q-dialog v-model="addCategoryDialog" persistent full-width >
     <q-card>
       <q-card-section class="bg-indigo-7">
-        <div class="text-h6">Добавление категории</div>
+        <div class="text-h6">{{t(`${TRANC_PREFIX}.add_title`)}}</div>
       </q-card-section>
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
-        <b>Не все поля заполнены!</b>
+        <b>{{t(`${TRANC_PREFIX}.not_valid`)}}</b>
       </div>
       <q-card-section class="q-mt-md justify-center content-center">
         <q-input
@@ -33,36 +36,38 @@ const disableSubmit = computed(() => {
             filled
             type="number"
             v-model="addItemCategory.position"
-            label="Позиция"
+            :label="t(`${TRANC_PREFIX}.position`)"
         />
-        <q-toggle v-model="addItemCategory.status" label="Статус" />
+        <q-toggle
+            v-model="addItemCategory.status"
+            :label="t(`${TRANC_PREFIX}.status`)" />
         <q-input
             class="q-my-xs"
             filled
             type="text"
             v-model="addItemCategory.ru"
-            label="Название русский"
+            :label="t(`${TRANC_PREFIX}.name_ru`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
             v-model="addItemCategory.uk"
-            label="Название украинский"
+            :label="t(`${TRANC_PREFIX}.name_ua`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
             v-model="addItemCategory.en"
-            label="Название ангийский"
+            :label="t(`${TRANC_PREFIX}.name_en`)"
         />
         <q-input
             class="q-my-xs"
             filled
             type="text"
             v-model="addItemCategory.ge"
-            label="Название грузинский"
+            :label="t(`${TRANC_PREFIX}.name_ge`)"
         />
       </q-card-section>
 

@@ -1,10 +1,7 @@
 {
-  "gallery":  "Галерея",
-  "privacy_policy": "Политика конфиденциальности",
-  "terms_of_use":  "Условия использования",
-  "news": "Новости",
-  "about_us":  "О нас",
-  "how_it_works": "Как это работает",
-  "faq":  "FAQ",
-  "store": "Магазин"
+  "home": "Главная",
+  "menu_management": "Управление меню",
+  "faq_folder": "FAQ",
+  "faq_category": "FAQ Категории",
+  "faq_question": "FAQ Вопросы ответы"
 }

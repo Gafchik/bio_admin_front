@@ -1,10 +1,7 @@
 {
-  "gallery": "Gallery",
-  "privacy_policy": "Privacy Policy",
-  "terms_of_use": "Terms of Use",
-  "news": "News",
-  "about_us": "About us",
-  "how_it_works": "How it works",
-  "faq": "FAQ",
-  "store": "Store"
+  "home": "Home",
+  "menu_management": "Menu Management",
+  "faq_folder": "FAQ",
+  "faq_category": "FAQ Categories",
+  "faq_question": "FAQ Questions Answers"
 }

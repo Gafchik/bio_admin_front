@@ -2,7 +2,8 @@
 import EditCategoryDialog from "@/components/pages/main-menu/FAQ/Category/EditCategoryDialog.vue"
 import AddCategoryDialog from "@/components/pages/main-menu/FAQ/Category/AddCategoryDialog.vue"
 import DialogConfirm from "@/components/common/DialogConfirm.vue"
-import { ref } from 'vue'
+import { useAppStore } from '@/store/app-store.js'
+import {computed, ref} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
@@ -11,12 +12,15 @@ const faqStore = useFaqStore()
 const {getFaq,deleteCategory, editCategory, addCategory} = faqStore
 const {category,faq} = storeToRefs(faqStore)
 const searchCat = ref('')
+const TRANC_PREFIX = 'pages.faq.categories'
+const appStore = useAppStore()
+const {currentLocale} = storeToRefs(appStore)
 getFaq();
-const category_columns = [
+const category_columns = computed(() => {return [
   {
     name: 'id',
     required: true,
-    label: 'id',
+    label: t(`${TRANC_PREFIX}.table_headers.id`),
     align: 'center',
     field: row => row.id,
     format: val => `${val}`,
@@ -25,16 +29,16 @@ const category_columns = [
   {
     name: 'label',
     required: true,
-    label: 'Название',
+    label: t(`${TRANC_PREFIX}.table_headers.label`),
     align: 'center',
-    field: row => row.label,
+    field: row => currentLocale.value === 'ru' ? row.label_ru : row.label_en,
     format: val => `${val}`,
     sortable: true
   },
   {
     name: 'position',
     required: true,
-    label: 'Позиция',
+    label: t(`${TRANC_PREFIX}.table_headers.position`),
     align: 'center',
     field: row => row.position,
     format: val => `${val}`,
@@ -43,7 +47,7 @@ const category_columns = [
   {
     name: 'status',
     required: true,
-    label: 'Статус',
+    label: t(`${TRANC_PREFIX}.table_headers.status`),
     align: 'center',
     field: row => row.status,
     sortable: false
@@ -51,7 +55,7 @@ const category_columns = [
   {
     name: 'created_at',
     required: true,
-    label: 'Создано',
+    label: t(`${TRANC_PREFIX}.table_headers.created_at`),
     align: 'center',
     field: row => row.created_at,
     format: val => `${val}`,
@@ -60,7 +64,7 @@ const category_columns = [
   {
     name: 'updated_at',
     required: true,
-    label: 'Обновлено',
+    label: t(`${TRANC_PREFIX}.table_headers.updated_at`),
     align: 'center',
     field: row => row.updated_at,
     format: val => `${val}`,
@@ -69,17 +73,17 @@ const category_columns = [
   {
     name: 'action',
     required: true,
-    label: 'Действие',
+    label: t(`${TRANC_PREFIX}.table_headers.action`),
     align: 'center',
   },
-]
+]})
 </script>
 
 <template>
   <div>
     <q-table
             class="q-my-md"
-            title="FAQ категории"
+            :title="t(`${TRANC_PREFIX}.title`)"
             :rows="category"
             :columns="category_columns"
             row-key="name"
@@ -96,7 +100,12 @@ const category_columns = [
                 flat
                 dense
                 color="blue"/>
-            <q-input borderless dense debounce="300" v-model="searchCat" placeholder="Поиск">
+            <q-input
+                borderless
+                dense
+                debounce="300"
+                v-model="searchCat"
+                :placeholder="t(`app.search`)">
               <template v-slot:append>
                 <q-icon name="search" />
               </template>

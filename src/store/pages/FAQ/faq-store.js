@@ -4,10 +4,13 @@ import { useAppStore } from '@/store/app-store.js'
 import { storeToRefs } from 'pinia'
 import {useDialogConfirmStore} from "@/store/common/dialog-confirm.js";
 import {Notify} from "quasar";
+import {useI18n} from "vue-i18n";
 
+const TRANC_PREFIX = 'pages.faq'
 export const useFaqStore = defineStore('useFaqStore', () => {
+    const {t} = useI18n()
     const appStore = useAppStore()
-    const {axios} = storeToRefs(appStore)
+    const {axios,currentLocale} = storeToRefs(appStore)
     const {openDialogConfirm} = useDialogConfirmStore()
     const category = ref([])
     const editItemCategory = ref({})
@@ -15,6 +18,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
     const editCategoryDialog = ref(false)
     const editQuestionDialog = ref(false)
     const addCategoryDialog = ref(false)
+    const addQuestionDialog = ref(false)
     const question = ref([])
     const addItemCategory = ref({
         position: 1,
@@ -23,6 +27,19 @@ export const useFaqStore = defineStore('useFaqStore', () => {
         uk: '',
         en: '',
         ge: '',
+    })
+    const addItemQuestion = ref({
+        faq_category_id: null,
+        position: 1,
+        status: true,
+        ru_question: '',
+        uk_question: '',
+        en_question: '',
+        ge_question: '',
+        ru_answer: '',
+        uk_answer: '',
+        en_answer: '',
+        ge_answer: '',
     })
     async function getFaq(){
         axios.value.post('/api/faq/get')
@@ -34,8 +51,8 @@ export const useFaqStore = defineStore('useFaqStore', () => {
     }
     function deleteCategory(item){
         openDialogConfirm({
-            title: 'Удаление категории',
-            text: 'Вы уверены что хотите удалить категорию '+item.label,
+            title: t(`${TRANC_PREFIX}.categories.confirm.delete.title`),
+            text: t(`${TRANC_PREFIX}.categories.confirm.delete.text`,{name: currentLocale.value === 'ru' ? item.label_ru : item.label_en}),
             func: deleteCategoryAsync,
             funcParams: item
         })
@@ -47,7 +64,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             .then(response => {
                 Notify.create({
                     color: 'green',
-                    message: 'Категория успешно удалена',
+                    message: t(`${TRANC_PREFIX}.categories.confirm.delete.success`),
                     progress: true,
                     position: 'top',
                     html: true,
@@ -75,8 +92,8 @@ export const useFaqStore = defineStore('useFaqStore', () => {
     }
     function saveEditCategory(){
         openDialogConfirm({
-            title: 'Сохранение изменений',
-            text: 'Вы уверены что хотите сохранить категорию '+editItemCategory.value.label,
+            title: t(`${TRANC_PREFIX}.categories.confirm.edit.title`),
+            text: t(`${TRANC_PREFIX}.categories.confirm.edit.text`),
             func: saveEditCategoryAsync,
             funcParams: editItemCategory.value
         })
@@ -96,7 +113,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             .then(response => {
                 Notify.create({
                     color: 'green',
-                    message: 'Категория успешно изменена',
+                    message: t(`${TRANC_PREFIX}.categories.confirm.edit.success`),
                     progress: true,
                     position: 'top',
                     html: true,
@@ -122,8 +139,8 @@ export const useFaqStore = defineStore('useFaqStore', () => {
     }
     function saveAddCategory(item){
         openDialogConfirm({
-            title: 'Сохранение новой категории',
-            text: 'Вы уверены что хотите добавить категорию?',
+            title: t(`${TRANC_PREFIX}.categories.confirm.add.title`),
+            text: t(`${TRANC_PREFIX}.categories.confirm.add.text`,),
             func: saveAddCategoryAsync,
             funcParams: item
         })
@@ -143,7 +160,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             .then(response => {
                 Notify.create({
                     color: 'green',
-                    message: 'Категория успешно добавлена',
+                    message: t(`${TRANC_PREFIX}.categories.confirm.add.success`),
                     progress: true,
                     position: 'top',
                     html: true,
@@ -154,7 +171,28 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             .catch(error => {});
     }
     function deleteQuestion(item){
-        console.log(item)
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.question.confirm.delete.title`),
+            text: t(`${TRANC_PREFIX}.question.confirm.delete.text`,),
+            func: deleteQuestionAsync,
+            funcParams: item
+        })
+    }
+    async function deleteQuestionAsync(data){
+        axios.value.post('/api/faq/delete-faq',{
+            question_id: data.id,
+        })
+            .then(response => {
+                Notify.create({
+                    color: 'green',
+                    message: t(`${TRANC_PREFIX}.question.confirm.delete.success`),
+                    progress: true,
+                    position: 'top',
+                    html: true,
+                });
+                getFaq()
+            })
+            .catch(error => {});
     }
     function editQuestion(item){
         editItemQuestion.value = {
@@ -175,19 +213,112 @@ export const useFaqStore = defineStore('useFaqStore', () => {
         editQuestionDialog.value = true
     }
     function saveEditQuestion(){
-        console.log(editItemQuestion)
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.question.confirm.edit.title`),
+            text: t(`${TRANC_PREFIX}.question.confirm.edit.text`,),
+            func: saveEditQuestionAsync,
+            funcParams: editItemQuestion.value
+        })
+    }
+    async function saveEditQuestionAsync (data) {
+        axios.value.post('/api/faq/change-faq',{
+            question_id: data.id,
+            category_id: data.faq_category_id,
+            position: data.position,
+            status: data.status,
+            locale_question: {
+                ru: data.ru_question,
+                uk: data.uk_question,
+                en: data.en_question,
+                ge: data.ge_question
+            },
+            locale_answer: {
+                ru: data.ru_answer,
+                uk: data.uk_answer,
+                en: data.en_answer,
+                ge: data.ge_answer
+            }
+        })
+            .then(response => {
+                Notify.create({
+                    color: 'green',
+                    message: t(`${TRANC_PREFIX}.question.confirm.edit.success`),
+                    progress: true,
+                    position: 'top',
+                    html: true,
+                });
+                getFaq()
+                closeEditQuestionDialog()
+            })
+            .catch(error => {});
     }
     function closeEditQuestionDialog(){
         editItemQuestion.value = {}
         editQuestionDialog.value = false
     }
     function addQuestion(){
-        console.log('jnjn')
+        addQuestionDialog.value = true
+    }
+    function closeAddQuestionDialog(){
+        addItemQuestion.value = {
+            faq_category_id: null,
+            position: 1,
+            status: true,
+            ru_question: '',
+            uk_question: '',
+            en_question: '',
+            ge_question: '',
+            ru_answer: '',
+            uk_answer: '',
+            en_answer: '',
+            ge_answer: '',
+        }
+        addQuestionDialog.value = false
+    }
+    function saveAddQuestion(){
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.question.confirm.add.title`),
+            text: t(`${TRANC_PREFIX}.question.confirm.add.text`,),
+            func: saveAddQuestionAsync,
+            funcParams: addItemQuestion.value
+        })
+    }
+    async function saveAddQuestionAsync(data){
+        axios.value.post('/api/faq/add-faq',{
+            category_id: data.faq_category_id,
+            position: data.position,
+            status: data.status,
+            locale_question: {
+                ru: data.ru_question,
+                uk: data.uk_question,
+                en: data.en_question,
+                ge: data.ge_question
+            },
+            locale_answer: {
+                ru: data.ru_answer,
+                uk: data.uk_answer,
+                en: data.en_answer,
+                ge: data.ge_answer
+            }
+        })
+            .then(response => {
+                Notify.create({
+                    color: 'green',
+                    message: t(`${TRANC_PREFIX}.question.confirm.add.success`),
+                    progress: true,
+                    position: 'top',
+                    html: true,
+                });
+                getFaq()
+                closeAddQuestionDialog()
+            })
+            .catch(error => {});
     }
     return {
         getFaq,category,question, deleteCategory, editCategory, addCategory,editItemCategory,editCategoryDialog,
         saveEditCategory,closeEditCategoryDialog,addCategoryDialog,saveAddCategory,addItemCategory,
         closeAddDialog,deleteQuestion,editQuestion,addQuestion, saveEditQuestion,
-        closeEditQuestionDialog, editItemQuestion, editQuestionDialog
+        closeEditQuestionDialog, editItemQuestion, editQuestionDialog,addQuestionDialog,
+        addItemQuestion,closeAddQuestionDialog,saveAddQuestion
     }
 })

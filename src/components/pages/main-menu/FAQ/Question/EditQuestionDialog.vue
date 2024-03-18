@@ -28,17 +28,23 @@ const {currentLocale} = storeToRefs(appStore)
 </script>
 
 <template>
-  <q-dialog v-model="editQuestionDialog" persistent full-width>
+  <q-dialog v-model="editQuestionDialog" maximized>
     <q-card>
-      <q-card-section class="bg-indigo-7">
+      <q-card-section class="bg-indigo-7 row items-center q-pb-none">
         <div class="text-h6">
           {{ t(`${TRANC_PREFIX}.edit_title`)}}
         </div>
+        <q-space />
+        <q-btn
+            @click="closeEditQuestionDialog"
+            icon="close"
+            flat
+            color="red"/>
       </q-card-section>
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
         <b>{{t(`${TRANC_PREFIX}.not_valid`)}}</b>
       </div>
-      <q-card-section class="q-mt-md justify-center content-center scroll" style="max-height: 50vh">
+      <q-card-section class="q-mt-md justify-center content-center scroll">
         <q-select
             class="q-mt-lg"
             filled

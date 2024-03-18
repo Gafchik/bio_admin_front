@@ -1,0 +1,51 @@
+{
+  "title": "Contacts",
+  "table_headers": {
+    "id": "id",
+    "type": "Type",
+    "social_type": "Social type",
+    "title": "Title",
+    "address": "Address",
+    "email": "E-mail",
+    "phone": "phone number",
+    "url": "Link",
+    "position": "Position",
+    "status":"Status",
+    "action": "Action"
+  },
+  "dialog": {
+    "edit_title": "Editing a contact",
+    "type_select": "Type",
+    "social_type_select": "Social type",
+    "email": "E-mail",
+    "phone": "phone number",
+    "url": "Link",
+    "position": "Position",
+    "status":"Status",
+    "title_ru": "Title Russian",
+    "title_uk" :"Ukrainian title",
+    "title_en" : "Title English",
+    "title_ge" : "Georgian title",
+    "address_ru" : "Russian address",
+    "address_uk" : "Ukrainian address",
+    "address_en" : "English address",
+    "address_ge" : "Georgian address"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete contact",
+      "text": "Are you sure you want to delete the contact?",
+      "success": "Contact response successfully deleted"
+    },
+    "edit": {
+      "title": "Saving changes",
+      "text": "Are you sure you want to save the contact changes?",
+      "success": "Contact changes successfully changed"
+    },
+    "add": {
+      "title": "Saving a new contact",
+      "text": "Are you sure you want to add a contact?",
+      "success": "Contact added successfully"
+    }
+  }
+}

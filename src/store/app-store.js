@@ -93,6 +93,15 @@ export const useAppStore = defineStore('useAppStore', () => {
             })
         }
     }
+    function showInfoMassage(message){
+        Notify.create({
+            color: 'green',
+            message: message,
+            progress: true,
+            position: 'top',
+            html: true,
+        });
+    }
     async function getUserInfo(){
         axios.value.post('/api/get-user-info')
             .then(response => {
@@ -166,6 +175,7 @@ export const useAppStore = defineStore('useAppStore', () => {
     })
     return {
         drawer,axios,selectedMainMenu,redirectTo,localesModel, email,password,disableSubmit,loginAsync,
-        jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog, qr,has2fac,logout, user,currentLocale
+        jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog, qr,has2fac,logout, user,currentLocale,
+        showInfoMassage
     }
 })

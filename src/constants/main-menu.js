@@ -30,6 +30,11 @@ export default [
                     },
                 ]
             },
+            {
+                label: `${TRANC_PREFIX}.contacts`,
+                route_name: 'contacts',
+                icon: 'import_contacts'
+            }
         ]
     },
 ]

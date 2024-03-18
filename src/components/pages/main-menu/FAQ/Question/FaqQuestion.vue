@@ -75,24 +75,6 @@ const faq_columns = computed(() => {return [
     sortable: false
   },
   {
-    name: 'created_at',
-    required: true,
-    label: t(`${TRANC_PREFIX}.table_headers.created_at`),
-    align: 'center',
-    field: row => row.created_at,
-    format: val => `${val}`,
-    sortable: true
-  },
-  {
-    name: 'updated_at',
-    required: true,
-    label: t(`${TRANC_PREFIX}.table_headers.updated_at`),
-    align: 'center',
-    field: row => row.updated_at,
-    format: val => `${val}`,
-    sortable: true
-  },
-  {
     name: 'action',
     required: true,
     label: t(`${TRANC_PREFIX}.table_headers.action`),
@@ -122,7 +104,6 @@ const filterQuestion = computed(() => {
       </q-select>
     <q-table
         :title="t(`${TRANC_PREFIX}.title`)"
-        title=""
         :rows="filterQuestion"
         :columns="faq_columns"
         v-model:pagination="pagination"

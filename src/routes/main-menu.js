@@ -7,7 +7,24 @@ import HowItWorks from '@/components/pages/main-menu/HowItWorks/HowItWorks.vue';
 import FaqCategory from '@/components/pages/main-menu/FAQ/Category/FaqCategory.vue';
 import FaqQuestion from '@/components/pages/main-menu/FAQ/Question/FaqQuestion.vue';
 import Store from '@/components/pages/main-menu/Store/Store.vue';
+import Contacts from '@/components/pages/main-menu/Contacts/Contacts.vue';
 export default [
+    {
+        path: '/faq-category',
+        component: FaqCategory,
+        name: 'faq_category',
+    },
+    {
+        path: '/faq-question',
+        component: FaqQuestion,
+        name: 'faq_question',
+    },
+    {
+        path: '/contacts',
+        component: Contacts,
+        name: 'contacts',
+    },
+    ///////=============
     {
         path: '/gallery',
         component: Gallery,
@@ -37,16 +54,6 @@ export default [
         path: '/how-it-works',
         component: HowItWorks,
         name: 'how_it_works',
-    },
-    {
-        path: '/faq-category',
-        component: FaqCategory,
-        name: 'faq_category',
-    },
-    {
-        path: '/faq-question',
-        component: FaqQuestion,
-        name: 'faq_question',
     },
     {
         path: '/store',

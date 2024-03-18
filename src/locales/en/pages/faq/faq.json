@@ -57,6 +57,7 @@
     "dialog": {
       "category_select": "Select a category",
       "edit_title": "Editing answer question",
+      "add_title": "Adding an answer question",
       "not_valid": "Not all fields are filled in!",
       "position":"Position",
       "status": "Status",

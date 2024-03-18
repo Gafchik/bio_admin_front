@@ -32,7 +32,7 @@ const {currentLocale} = storeToRefs(appStore)
     <q-card>
       <q-card-section class="bg-indigo-7">
         <div class="text-h6">
-          {{ t(`${TRANC_PREFIX}.edit_title`)}}
+          {{ t(`${TRANC_PREFIX}.add_title`)}}
         </div>
       </q-card-section>
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">

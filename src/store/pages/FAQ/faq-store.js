@@ -276,12 +276,13 @@ export const useFaqStore = defineStore('useFaqStore', () => {
         addQuestionDialog.value = false
     }
     function saveAddQuestion(){
-        openDialogConfirm({
-            title: t(`${TRANC_PREFIX}.question.confirm.add.title`),
-            text: t(`${TRANC_PREFIX}.question.confirm.add.text`,),
-            func: saveAddQuestionAsync,
-            funcParams: addItemQuestion.value
-        })
+        console.log(addItemQuestion.value)
+        // openDialogConfirm({
+        //     title: t(`${TRANC_PREFIX}.question.confirm.add.title`),
+        //     text: t(`${TRANC_PREFIX}.question.confirm.add.text`,),
+        //     func: saveAddQuestionAsync,
+        //     funcParams: addItemQuestion.value
+        // })
     }
     async function saveAddQuestionAsync(data){
         axios.value.post('/api/faq/add-faq',{

@@ -15,6 +15,7 @@
     "pinia": "^2.1.7",
     "postcss-loader": "^4.3.0",
     "quasar": "^2.14.6",
+    "quill-blot-formatter": "^1.0.5",
     "raw-loader": "^4.0.2",
     "vue": "^3.4.19",
     "vue-i18n": "^9.10.1",

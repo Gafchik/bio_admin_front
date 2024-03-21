@@ -34,6 +34,11 @@ export default [
                 label: `${TRANC_PREFIX}.contacts`,
                 route_name: 'contacts',
                 icon: 'import_contacts'
+            },
+            {
+                label: `${TRANC_PREFIX}.privacy_policy`,
+                route_name: 'privacy_policy',
+                icon: 'policy'
             }
         ]
     },

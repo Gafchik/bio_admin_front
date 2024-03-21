@@ -14,7 +14,7 @@ const {t} = useI18n()
   <q-drawer
       v-model="drawer"
       v-if="isLogin"
-      :width="300"
+      :width="350"
       :breakpoint="500"
       bordered
       class="bg-indigo-7 text-white"

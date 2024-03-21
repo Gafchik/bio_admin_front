@@ -24,17 +24,18 @@ export default [
         component: Contacts,
         name: 'contacts',
     },
+    {
+        path: '/privacy-policy',
+        component: PrivacyPolicy,
+        name: 'privacy_policy',
+    },
     ///////=============
     {
         path: '/gallery',
         component: Gallery,
         name: 'gallery',
     },
-    {
-        path: '/privacy-policy',
-        component: PrivacyPolicy,
-        name: 'privacy_policy',
-    },
+
     {
         path: '/terms-of-use',
         component: TermsOfUse,

@@ -91,6 +91,7 @@ export const useAppStore = defineStore('useAppStore', () => {
             router.push({
                 name: routeName,
             })
+            drawer.value = false
         }
     }
     function showInfoMassage(message){

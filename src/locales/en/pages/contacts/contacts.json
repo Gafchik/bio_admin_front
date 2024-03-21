@@ -15,6 +15,7 @@
   },
   "dialog": {
     "edit_title": "Editing a contact",
+    "add_title": "Adding a contact",
     "type_select": "Type",
     "social_type_select": "Social type",
     "email": "E-mail",
@@ -40,7 +41,7 @@
     "edit": {
       "title": "Saving changes",
       "text": "Are you sure you want to save the contact changes?",
-      "success": "Contact changes successfully changed"
+      "success": "Contact changes successfully"
     },
     "add": {
       "title": "Saving a new contact",

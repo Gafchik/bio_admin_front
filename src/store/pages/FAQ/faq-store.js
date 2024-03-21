@@ -10,6 +10,7 @@ const TRANC_PREFIX = 'pages.faq'
 export const useFaqStore = defineStore('useFaqStore', () => {
     const {t} = useI18n()
     const appStore = useAppStore()
+    const {showInfoMassage} = appStore;
     const {axios,currentLocale} = storeToRefs(appStore)
     const {openDialogConfirm} = useDialogConfirmStore()
     const category = ref([])
@@ -62,13 +63,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             category_id: data.id,
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.categories.confirm.delete.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage(t(`${TRANC_PREFIX}.categories.confirm.delete.success`))
                 getFaq()
             })
             .catch(error => {});
@@ -111,13 +106,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             }
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.categories.confirm.edit.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage(t(`${TRANC_PREFIX}.categories.confirm.edit.success`))
                 getFaq()
                 closeEditCategoryDialog()
             })
@@ -158,13 +147,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             }
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.categories.confirm.add.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage(t(`${TRANC_PREFIX}.categories.confirm.add.success`))
                 getFaq()
                 closeAddDialog()
             })
@@ -183,13 +166,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             question_id: data.id,
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.question.confirm.delete.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage( t(`${TRANC_PREFIX}.question.confirm.delete.success`))
                 getFaq()
             })
             .catch(error => {});
@@ -240,13 +217,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             }
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.question.confirm.edit.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage(  t(`${TRANC_PREFIX}.question.confirm.edit.success`))
                 getFaq()
                 closeEditQuestionDialog()
             })
@@ -302,13 +273,7 @@ export const useFaqStore = defineStore('useFaqStore', () => {
             }
         })
             .then(response => {
-                Notify.create({
-                    color: 'green',
-                    message: t(`${TRANC_PREFIX}.question.confirm.add.success`),
-                    progress: true,
-                    position: 'top',
-                    html: true,
-                });
+                showInfoMassage( t(`${TRANC_PREFIX}.question.confirm.add.success`))
                 getFaq()
                 closeAddQuestionDialog()
             })

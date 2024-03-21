@@ -1,6 +1,7 @@
 <script setup>
 import DialogConfirm from "@/components/common/DialogConfirm.vue"
 import EditContactsDialog from "@/components/pages/main-menu/Contacts/EditContactsDialog.vue"
+import AddContactsDialog from "@/components/pages/main-menu/Contacts/AddContactsDialog.vue"
 import { useAppStore } from '@/store/app-store.js'
 import {computed, ref} from 'vue'
 
@@ -253,6 +254,7 @@ const columns = computed(() => {return [
     </template>
   </q-table>
   <EditContactsDialog/>
+  <AddContactsDialog/>
   <DialogConfirm/>
 </div>
 </template>

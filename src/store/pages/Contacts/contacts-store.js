@@ -3,7 +3,6 @@ import {ref,computed,watch} from "vue";
 import { useAppStore } from '@/store/app-store.js'
 import { storeToRefs } from 'pinia'
 import {useDialogConfirmStore} from "@/store/common/dialog-confirm.js";
-import {Notify} from "quasar";
 import {useI18n} from "vue-i18n";
 
 const TRANC_PREFIX = 'pages.contacts'
@@ -20,6 +19,7 @@ export const useContactsStore = defineStore('useContactsStore', () => {
     const addDialog = ref(false)
     const editDialog = ref(false)
     const editItem = ref({})
+    const addItem = ref({})
     async function getContactsInfoAsync() {
         axios.value.post('/api/contacts/get-info',)
             .then(response => {
@@ -29,11 +29,71 @@ export const useContactsStore = defineStore('useContactsStore', () => {
             })
             .catch(error => {});
     }
-    function addItemFn(item){
-
+    function addItemFn(){
+        addItem.value = {
+            type: 0,
+            social_type: null,
+            email: '',
+            phone: '',
+            url: '',
+            position: 1,
+            status: true,
+            title_ru: '',
+            title_uk: '',
+            title_en: '',
+            title_ge: '',
+            address_ru: '',
+            address_uk: '',
+            address_en: '',
+            address_ge: '',
+        }
+        addDialog.value = true
     }
     function closeAddItemFn(){
-
+        addItem.value = {}
+        addDialog.value = false
+    }
+    function saveAddItemFn(){
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.confirm.add.title`),
+            text: t(`${TRANC_PREFIX}.confirm.add.text`),
+            func: saveAddItemFnAsync,
+            funcParams: addItem.value
+        })
+    }
+    async function saveAddItemFnAsync(data){
+        axios.value.post('/api/contacts/add',{
+            type: data.type,
+            social_type: data.social_type,
+            email: data.email,
+            phone: data.phone,
+            url: data.url,
+            position: data.position,
+            status: !!data.status,
+            lang:{
+                ru: {
+                    title: data.title_ru,
+                    address: data.address_ru,
+                },
+                uk:{
+                    title: data.title_uk,
+                    address: data.address_uk,
+                },
+                en:{
+                    title: data.title_en,
+                    address: data.address_en,
+                },
+                ge:{
+                    title: data.title_ge,
+                    address: data.address_ge,
+                }
+            }
+        }).then(response => {
+            showInfoMassage( t(`${TRANC_PREFIX}.confirm.add.success`))
+            getContactsInfoAsync()
+            closeAddItemFn()
+        })
+            .catch(error => {});
     }
     function editItemFn(item){
         editItem.value = {
@@ -69,14 +129,59 @@ export const useContactsStore = defineStore('useContactsStore', () => {
         })
     }
     async function saveEditItemFnAsync(data){
-        console.log(data)
+        axios.value.post('/api/contacts/edit',{
+            id: data.id,
+            type: data.type,
+            social_type: data.social_type,
+            email: data.email,
+            phone: data.phone,
+            url: data.url,
+            position: data.position,
+            status: !!data.status,
+            lang:{
+                ru: {
+                    title: data.title_ru,
+                    address: data.address_ru,
+                },
+                uk:{
+                    title: data.title_uk,
+                    address: data.address_uk,
+                },
+                en:{
+                    title: data.title_en,
+                    address: data.address_en,
+                },
+                ge:{
+                    title: data.title_ge,
+                    address: data.address_ge,
+                }
+            }
+        }).then(response => {
+            showInfoMassage( t(`${TRANC_PREFIX}.confirm.edit.success`))
+            getContactsInfoAsync()
+            closeEditItemFn()
+        })
+            .catch(error => {});
     }
     function deleteItemFn(item){
-
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.confirm.delete.title`),
+            text: t(`${TRANC_PREFIX}.confirm.delete.text`),
+            func: deleteItemFnAsync,
+            funcParams: item
+        })
     }
-
+    async function deleteItemFnAsync(data){
+        axios.value.post('/api/contacts/delete',{
+            id: data.id,
+        }).then(response => {
+            showInfoMassage( t(`${TRANC_PREFIX}.confirm.delete.success`))
+            getContactsInfoAsync()
+        })
+            .catch(error => {});
+    }
     return {
         getContactsInfoAsync,contacts,dic_contacts_type,dic_contacts_social_type,addItemFn,editItemFn, deleteItemFn,
-        closeAddItemFn, closeEditItemFn,editDialog,editItem,saveEditItemFn
+        closeAddItemFn, closeEditItemFn,editDialog,editItem,saveEditItemFn,addDialog,addItem,saveAddItemFn
     }
 })

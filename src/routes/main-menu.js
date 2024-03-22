@@ -29,17 +29,16 @@ export default [
         component: PrivacyPolicy,
         name: 'privacy_policy',
     },
+    {
+        path: '/terms-of-use',
+        component: TermsOfUse,
+        name: 'terms_of_use',
+    },
     ///////=============
     {
         path: '/gallery',
         component: Gallery,
         name: 'gallery',
-    },
-
-    {
-        path: '/terms-of-use',
-        component: TermsOfUse,
-        name: 'terms_of_use',
     },
     {
         path: '/news',

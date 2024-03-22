@@ -39,6 +39,11 @@ export default [
                 label: `${TRANC_PREFIX}.privacy_policy`,
                 route_name: 'privacy_policy',
                 icon: 'policy'
+            },
+            {
+                label: `${TRANC_PREFIX}.terms_of_use`,
+                route_name: 'terms_of_use',
+                icon: 'density_small'
             }
         ]
     },

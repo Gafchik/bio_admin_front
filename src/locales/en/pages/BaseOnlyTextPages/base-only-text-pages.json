@@ -1,0 +1,7 @@
+{
+  "confirm": {
+    "title": "Save changes to page",
+    "text": "Are you sure you want to save changes to the page?",
+    "success": "Changes saved successfully"
+  }
+}

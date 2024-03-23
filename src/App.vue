@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from '@/components/core/Header.vue'
 import Drawer from "@/components/core/Drawer.vue";
+import LoadingDialog from "@/components/common/LoadingDialog.vue";
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import Drawer from "@/components/core/Drawer.vue";
       <router-view></router-view>
     </q-page-container>
   </q-layout>
+  <LoadingDialog/>
 </template>
 
 <style scoped>

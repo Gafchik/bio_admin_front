@@ -17,6 +17,7 @@ export const useAppStore = defineStore('useAppStore', () => {
     const jwtType = ref('')
     const qr = ref('')
     const user = ref({})
+    const isLoading = ref(false)
     const isLogin = computed(() => !!cookies.get('jwt'))
     const google2facDialog = ref(false)
     const has2fac = ref(false)
@@ -33,14 +34,17 @@ export const useAppStore = defineStore('useAppStore', () => {
             if(!!jwt){
                 config.headers['Authorization'] = `Bearer ${jwt}`
             }
+            isLoading.value = true;
             return config;
         }, error => {
             return Promise.reject(error);
         })
         axiosInstance.interceptors.response.use(response => {
+                isLoading.value = false;
                 return response;
             },
             error => {
+                isLoading.value = false;
                 if(error.response.status === 401){
                     cookies.remove('jwt')
                     Notify.create({
@@ -177,6 +181,6 @@ export const useAppStore = defineStore('useAppStore', () => {
     return {
         drawer,axios,selectedMainMenu,redirectTo,localesModel, email,password,disableSubmit,loginAsync,
         jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog, qr,has2fac,logout, user,currentLocale,
-        showInfoMassage
+        showInfoMassage,isLoading
     }
 })

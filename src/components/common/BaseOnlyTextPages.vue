@@ -19,6 +19,12 @@ const props = defineProps({
     required: true,
   }
 })
+item.value = {
+  ru: '',
+  uk: '',
+  en: '',
+  ge: '',
+}
 getItemInfoAsync(props.id)
 const tab = ref(ARRAY_FULL_LOCALE[0])
 </script>
@@ -44,7 +50,7 @@ const tab = ref(ARRAY_FULL_LOCALE[0])
         <q-tab-panel v-for="locale in ARRAY_FULL_LOCALE" :name="locale" >
           <QuillEditor
               class="q-my-xs"
-              style="height: 250px"
+              :style="$q.platform.is.mobile ? 'height: 250px' : 'height: 400px'"
               :toolbar="toolbarOptions"
               theme="snow"
               contentType="html"

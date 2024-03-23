@@ -22,7 +22,6 @@ const pagination = ref({
   rowsPerPage: 10
 })
 
-
 const columns = computed(() => {return [
   {
     name: 'id',
@@ -131,10 +130,14 @@ const columns = computed(() => {return [
     align: 'center',
   },
 ]})
+import {CKEditorConfig} from "@/modules/sk-editor-5-config.js";
+const model = ref('')
+
 </script>
 
 <template>
 <div>
+  <ckeditor :editor="CKEditorConfig" v-model="model" ></ckeditor>
   <q-table
       class="q-my-lg"
       :title="t(`${TRANC_PREFIX}.title`)"

@@ -8,7 +8,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 import i18n from "../src/modules/i18n.js"
-import { CKEditor } from '@ckeditor/ckeditor5-vue';
+// import { CKEditor } from '@ckeditor/ckeditor5-vue';
 import router from "@/routes/router.js"
 
 import App from './App.vue'
@@ -17,11 +17,12 @@ const myApp = createApp(App)
 const Block = Quill.import('blots/block');
 Block.tagName = 'DIV';
 Quill.register(Block, true);
+
 myApp.use(pinia)
     .component('QuillEditor', QuillEditor)
     .use(i18n)
     .use(VueCookies)
-    .use(CKEditor)
+    // .use(CKEditor)
     .use(router)
     .use(Quasar, {
         plugins: {

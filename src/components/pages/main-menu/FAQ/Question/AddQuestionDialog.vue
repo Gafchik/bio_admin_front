@@ -3,8 +3,8 @@ import { ref, computed} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
-import {toolbarOptions} from "@/constants/quill-editor-toolbar.js";
 import {useAppStore} from "@/store/app-store.js";
+import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
 const {t} = useI18n()
 const faqStore = useFaqStore()
 const {saveAddQuestion,closeAddQuestionDialog} = faqStore
@@ -95,38 +95,34 @@ const {currentLocale} = storeToRefs(appStore)
             v-model="addItemQuestion.ge_question"
             :label="t(`${TRANC_PREFIX}.question_ge`)"
         />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ru`)}}</div>
-        <QuillEditor
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.answer_ru`)"
+            :showUploadImage="true"
+            nameRef="ru_answer"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItemQuestion.ru_answer"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ua`)}}</div>
-        <QuillEditor
+            v-model:model="addItemQuestion.ru_answer"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.answer_ua`)"
+            :showUploadImage="true"
+            nameRef="uk_answer"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItemQuestion.uk_answer"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.answer_en`)}}</div>
-        <QuillEditor
+            v-model:model="addItemQuestion.uk_answer"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.answer_en`)"
+            :showUploadImage="true"
+            nameRef="en_answer"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItemQuestion.en_answer"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.answer_ge`)}}</div>
-        <QuillEditor
+            v-model:model="addItemQuestion.en_answer"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.answer_ge`)"
+            :showUploadImage="true"
+            nameRef="ge_answer"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItemQuestion.ge_answer"  />
+            v-model:model="addItemQuestion.ge_answer"/>
       </q-card-section>
 
       <q-card-actions align="right">

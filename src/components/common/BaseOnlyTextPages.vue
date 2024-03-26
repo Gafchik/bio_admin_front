@@ -6,7 +6,7 @@ import { useI18n } from "vue-i18n";
 import {useBaseOnlyTextStore} from "@/store/common/base-only-text-store.js";
 import {ref} from "vue";
 import {ARRAY_FULL_LOCALE} from "@/constants/locales.js";
-import {toolbarOptions} from "@/constants/quill-editor-toolbar.js";
+import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
 const {t} = useI18n()
 const appStore = useAppStore()
 const {currentLocale} = storeToRefs(appStore)
@@ -17,6 +17,11 @@ const props = defineProps({
   id: {
     type: Number,
     required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+    default: ''
   }
 })
 item.value = {
@@ -32,6 +37,7 @@ const tab = ref(ARRAY_FULL_LOCALE[0])
 <template>
   <div class="q-my-lg" style="width: 90%">
     <div>
+      <div class="text-center">{{t(title)}}</div>
       <q-tabs
           v-model="tab"
           :mobile-arrows="$q.platform.is.mobile"
@@ -47,14 +53,14 @@ const tab = ref(ARRAY_FULL_LOCALE[0])
           transition-prev="jump-up"
           transition-next="jump-up"
       >
-        <q-tab-panel v-for="locale in ARRAY_FULL_LOCALE" :name="locale" >
-          <QuillEditor
+        <q-tab-panel v-for="locale in ARRAY_FULL_LOCALE" :name="locale">
+          <MyQuillEditor
               class="q-my-xs"
-              :style="$q.platform.is.mobile ? 'height: 250px' : 'height: 400px'"
-              :toolbar="toolbarOptions"
-              theme="snow"
-              contentType="html"
-              v-model:content="item[locale]"  />
+              :title="''"
+              :nameRef="locale"
+              :showUploadImage="true"
+              :style="$q.platform.is.mobile ? 'height: 250px' : 'height: 380px'"
+              v-model:model="item[locale]"/>
         </q-tab-panel>
       </q-tab-panels>
     </div>

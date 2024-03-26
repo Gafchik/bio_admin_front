@@ -8,6 +8,7 @@ import {computed, ref} from 'vue'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 import {useContactsStore} from "@/store/pages/Contacts/contacts-store.js";
+
 const {t} = useI18n()
 const contactsStore = useContactsStore()
 const {getContactsInfoAsync,addItemFn, editItemFn, deleteItemFn} = contactsStore
@@ -130,14 +131,10 @@ const columns = computed(() => {return [
     align: 'center',
   },
 ]})
-import {CKEditorConfig} from "@/modules/sk-editor-5-config.js";
-const model = ref('')
-
 </script>
 
 <template>
 <div>
-  <ckeditor :editor="CKEditorConfig" v-model="model" ></ckeditor>
   <q-table
       class="q-my-lg"
       :title="t(`${TRANC_PREFIX}.title`)"

@@ -25,7 +25,7 @@ export const useAppStore = defineStore('useAppStore', () => {
     const { locale } = useI18n();
     const currentLocale = computed(() => locale.value);
     const localesModel= ref({})
-
+    const elFinderDialog = ref(false)
     const axios = computed(() =>{
         axiosInstance.interceptors.request.use(config => {
             config.headers['Content-Type'] = 'application/json;charset=utf-8'
@@ -178,9 +178,15 @@ export const useAppStore = defineStore('useAppStore', () => {
     watch(localesModel, () => {
         locale.value = localesModel.value.value
     })
+    function openElFinderDialog(){
+        elFinderDialog.value = true
+    }
+    function closeElFinderDialog(){
+        elFinderDialog.value = false
+    }
     return {
         drawer,axios,selectedMainMenu,redirectTo,localesModel, email,password,disableSubmit,loginAsync,
         jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog, qr,has2fac,logout, user,currentLocale,
-        showInfoMassage,isLoading
+        showInfoMassage,isLoading,elFinderDialog,openElFinderDialog,closeElFinderDialog
     }
 })

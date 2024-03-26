@@ -2,6 +2,7 @@
 import AppHeader from '@/components/core/Header.vue'
 import Drawer from "@/components/core/Drawer.vue";
 import LoadingDialog from "@/components/common/LoadingDialog.vue";
+import ElFinder from "@/components/common/ElFinder.vue";
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import LoadingDialog from "@/components/common/LoadingDialog.vue";
     </q-page-container>
   </q-layout>
   <LoadingDialog/>
+  <ElFinder/>
 </template>
 
 <style scoped>

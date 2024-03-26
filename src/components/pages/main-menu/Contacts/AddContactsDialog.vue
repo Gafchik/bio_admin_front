@@ -5,7 +5,7 @@ import {computed, ref} from 'vue'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 import {useContactsStore} from "@/store/pages/Contacts/contacts-store.js";
-import {toolbarOptions} from "@/constants/quill-editor-toolbar.js";
+import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
 const {t} = useI18n()
 const contactsStore = useContactsStore()
 const {closeAddItemFn,saveAddItemFn} = contactsStore
@@ -117,38 +117,34 @@ const {currentLocale} = storeToRefs(appStore)
             v-model="addItem.title_ge"
             :label="t(`${TRANC_PREFIX}.title_ge`)"
         />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.address_ru`)}}</div>
-        <QuillEditor
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.address_ru`)"
+            :showUploadImage="true"
+            nameRef="address_ru"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItem.address_ru"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.address_uk`)}}</div>
-        <QuillEditor
+            v-model:model="addItem.address_ru"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.address_uk`)"
+            :showUploadImage="true"
+            nameRef="address_uk"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItem.address_uk"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.address_en`)}}</div>
-        <QuillEditor
+            v-model:model="addItem.address_uk"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.address_en`)"
+            :showUploadImage="true"
+            nameRef="address_en"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItem.address_en"  />
-        <div class="text-center">{{t(`${TRANC_PREFIX}.address_ge`)}}</div>
-        <QuillEditor
+            v-model:model="addItem.address_en"/>
+        <MyQuillEditor
             class="q-my-xs"
+            :title="t(`${TRANC_PREFIX}.address_ge`)"
+            :showUploadImage="true"
+            nameRef="address_ge"
             style="height: 250px"
-            :toolbar="toolbarOptions"
-            theme="snow"
-            contentType="html"
-            v-model:content="addItem.address_ge"  />
+            v-model:model="addItem.address_ge"/>
       </q-card-section>
 
       <q-card-actions align="right">

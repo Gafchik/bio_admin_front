@@ -34,6 +34,11 @@ export default [
         component: TermsOfUse,
         name: 'terms_of_use',
     },
+    {
+        path: '/how-it-works',
+        component: HowItWorks,
+        name: 'how_it_works',
+    },
     ///////=============
     {
         path: '/gallery',
@@ -50,11 +55,7 @@ export default [
         component: AboutUs,
         name: 'about_us',
     },
-    {
-        path: '/how-it-works',
-        component: HowItWorks,
-        name: 'how_it_works',
-    },
+
     {
         path: '/store',
         component: Store,

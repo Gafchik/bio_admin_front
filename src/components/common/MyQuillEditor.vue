@@ -36,8 +36,7 @@ const quillRef = ref(null);
 function quill_img_handler() {
   const url = import.meta.env.VITE_BASE_FILE_URL+'/';
   // const path = prompt(t('app.imagePath'));
-  const path = removeSpaces(removeQueryParams(prompt(t('app.imagePath'))))
-  alert(path)
+  const path = removeQueryParams(prompt(t('app.imagePath')))
   if (path) {
     const range = quillRef.value.getSelection();
     const rangeIndex = range ? range.index : 0

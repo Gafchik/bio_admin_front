@@ -44,7 +44,12 @@ export default [
                 label: `${TRANC_PREFIX}.terms_of_use`,
                 route_name: 'terms_of_use',
                 icon: 'density_small'
-            }
+            },
+            {
+                label: `${TRANC_PREFIX}.how_it_works`,
+                route_name: 'how_it_works',
+                icon: 'help'
+            },
         ]
     },
 ]

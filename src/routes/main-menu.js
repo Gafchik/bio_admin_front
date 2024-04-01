@@ -39,17 +39,18 @@ export default [
         component: HowItWorks,
         name: 'how_it_works',
     },
+    {
+        path: '/news',
+        component: News,
+        name: 'news',
+    },
     ///////=============
     {
         path: '/gallery',
         component: Gallery,
         name: 'gallery',
     },
-    {
-        path: '/news',
-        component: News,
-        name: 'news',
-    },
+
     {
         path: '/about-us',
         component: AboutUs,

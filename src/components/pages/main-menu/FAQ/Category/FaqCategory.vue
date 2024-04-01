@@ -1,7 +1,6 @@
 <script setup>
 import EditCategoryDialog from "@/components/pages/main-menu/FAQ/Category/EditCategoryDialog.vue"
 import AddCategoryDialog from "@/components/pages/main-menu/FAQ/Category/AddCategoryDialog.vue"
-import DialogConfirm from "@/components/common/DialogConfirm.vue"
 import { useAppStore } from '@/store/app-store.js'
 import {computed, ref} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
@@ -148,7 +147,6 @@ const category_columns = computed(() => {return [
         </q-table>
     <EditCategoryDialog/>
     <AddCategoryDialog/>
-    <DialogConfirm/>
   </div>
 </template>
 

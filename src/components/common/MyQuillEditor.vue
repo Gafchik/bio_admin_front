@@ -1,7 +1,7 @@
 <script setup>
 import {useAppStore} from "@/store/app-store.js";
 import {onMounted, ref, toRef, toRefs} from "vue";
-import { removeSpaces, removeQueryParams } from '@/filters/filters.js';
+import { removeQueryParams } from '@/filters/filters.js';
 import {Quill, QuillEditor} from '@vueup/vue-quill'
 const appStore = useAppStore()
 const {openElFinderDialog} = appStore

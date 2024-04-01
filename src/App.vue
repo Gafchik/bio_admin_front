@@ -3,6 +3,7 @@ import AppHeader from '@/components/core/Header.vue'
 import Drawer from "@/components/core/Drawer.vue";
 import LoadingDialog from "@/components/common/LoadingDialog.vue";
 import ElFinder from "@/components/common/ElFinder.vue";
+import DialogConfirm from "@/components/common/DialogConfirm.vue"
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import ElFinder from "@/components/common/ElFinder.vue";
   </q-layout>
   <LoadingDialog/>
   <ElFinder/>
+  <DialogConfirm/>
 </template>
 
 <style scoped>

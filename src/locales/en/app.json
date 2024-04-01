@@ -4,10 +4,13 @@
   "uk": "Ukrainian",
   "ru":"Russian",
   "en": "English",
-  "ge": "Georgian"
+  "ge": "Georgian",
+  "base_setting": "Base"
  },
  "session_daed": "Session lifetime has expired, Refresh the page and log in",
  "server_not_response": "No response from server",
  "request_error": "Error setting up request",
- "imagePath": "Enter the path to the image:"
+ "imagePath": "Enter the path to the image:",
+ "required": "Field is required"
+
 }

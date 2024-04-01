@@ -1,7 +1,6 @@
 <script setup>
 import EditQuestionDialog from "@/components/pages/main-menu/FAQ/Question/EditQuestionDialog.vue"
 import AddQuestionDialog from "@/components/pages/main-menu/FAQ/Question/AddQuestionDialog.vue"
-import DialogConfirm from "@/components/common/DialogConfirm.vue"
 import {computed, ref} from 'vue'
 import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
@@ -221,7 +220,6 @@ const filterQuestion = computed(() => {
     </q-table>
     <EditQuestionDialog/>
     <AddQuestionDialog/>
-    <DialogConfirm/>
   </div>
 </template>
 

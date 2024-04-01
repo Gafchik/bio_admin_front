@@ -1,0 +1,40 @@
+{
+  "title": "News",
+  "table_headers": {
+    "id": "id",
+    "image": "Image",
+    "view_count": "Number of views",
+    "date": "Date",
+    "short_content": "Shortened Content",
+    "status": "Status",
+    "action": "Action"
+  },
+  "dialogue": {
+    "edit_title": "Editing news",
+    "add_title": "Adding news",
+    "status": "Status",
+    "date": "Date",
+    "image": "Image path",
+    "name": "Name",
+    "short content": "Short description",
+    "content": "Content",
+    "not_valid": "Not all fields are filled in!"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Deleting news",
+      "text": "Are you sure you want to delete the news?",
+      "success": "News response successfully deleted"
+    },
+    "edit": {
+      "title": "Saving changes",
+      "text": "Are you sure you want to save the news changes?",
+      "success": "News successfully changed"
+    },
+    "add": {
+      "title": "Saving new news",
+      "text": "Are you sure you want to add news?",
+      "success": "News added successfully"
+    }
+  }
+}

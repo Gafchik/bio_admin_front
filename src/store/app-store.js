@@ -83,7 +83,7 @@ export const useAppStore = defineStore('useAppStore', () => {
                         html: true,
                     });
                 }
-                return error;
+                throw error;
             }
         );
         return axiosInstance

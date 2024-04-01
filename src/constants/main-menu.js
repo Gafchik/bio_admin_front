@@ -50,6 +50,11 @@ export default [
                 route_name: 'how_it_works',
                 icon: 'help'
             },
+            {
+                label: `${TRANC_PREFIX}.news`,
+                route_name: 'news',
+                icon: 'library_books'
+            },
         ]
     },
 ]

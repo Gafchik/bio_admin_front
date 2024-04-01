@@ -153,12 +153,12 @@ export const useAppStore = defineStore('useAppStore', () => {
                 router.push('/login')
             });
     }
-    async function sendGoogle2fac(codeValue = '') {
+    async function sendGoogle2fac() {
         if(!has2fac.value){
             has2fac.value = true
         }else{
             axios.value.post('/api/google2fac',{
-                code: codeValue,
+                code: code.value,
                 email: email.value,
             },{
                 headers: {
@@ -187,6 +187,6 @@ export const useAppStore = defineStore('useAppStore', () => {
     return {
         drawer,axios,selectedMainMenu,redirectTo,localesModel, email,password,disableSubmit,loginAsync,
         jwt, jwtType, isLogin,sendGoogle2fac,google2facDialog, qr,has2fac,logout, user,currentLocale,
-        showInfoMassage,isLoading,elFinderDialog,openElFinderDialog,closeElFinderDialog
+        showInfoMassage,isLoading,elFinderDialog,openElFinderDialog,closeElFinderDialog,code
     }
 })

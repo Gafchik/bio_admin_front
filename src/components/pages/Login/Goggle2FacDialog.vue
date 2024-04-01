@@ -31,7 +31,7 @@ const TRANC_PREFIX = 'pages.login'
 
       <q-card-actions align="right">
         <q-btn
-               @click="sendGoogle2fac(code)"
+               @click="sendGoogle2fac"
                icon="done"
                flat
                color="positive"/>

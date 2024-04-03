@@ -38,7 +38,7 @@ const disableSubmit = computed(() => {
 <template>
   <q-dialog v-model="editDialog" maximized>
     <q-card>
-      <q-card-section class="bg-indigo-7 row items-center q-pb-none">
+      <q-bar class="bg-indigo-7 row items-center q-pb-none">
         <div class="text-h6">
           {{ t(`${TRANC_PREFIX}.edit_title`)}}
         </div>
@@ -48,7 +48,7 @@ const disableSubmit = computed(() => {
             icon="close"
             flat
             color="red"/>
-      </q-card-section>
+      </q-bar>
       <q-card-section class="q-mt-md justify-center content-center scroll">
         <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
           <b>{{t(`${TRANC_PREFIX}.not_valid`)}}</b>

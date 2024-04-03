@@ -30,7 +30,7 @@ const {currentLocale} = storeToRefs(appStore)
 <template>
   <q-dialog v-model="addQuestionDialog" maximized>
     <q-card>
-      <q-card-section class="bg-indigo-7 row items-center q-pb-none">
+      <q-bar class="bg-indigo-7 row items-center q-pb-none">
         <div class="text-h6">
           {{ t(`${TRANC_PREFIX}.add_title`)}}
         </div>
@@ -40,7 +40,7 @@ const {currentLocale} = storeToRefs(appStore)
             icon="close"
             flat
             color="red"/>
-      </q-card-section>
+      </q-bar>
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
         <b>{{t(`${TRANC_PREFIX}.not_valid`)}}</b>
       </div>

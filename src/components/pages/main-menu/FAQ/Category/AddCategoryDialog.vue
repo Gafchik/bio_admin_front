@@ -24,9 +24,9 @@ const TRANC_PREFIX = 'pages.faq.categories.dialog'
 <template>
   <q-dialog v-model="addCategoryDialog" persistent full-width >
     <q-card>
-      <q-card-section class="bg-indigo-7">
+      <q-bar class="bg-indigo-7">
         <div class="text-h6">{{t(`${TRANC_PREFIX}.add_title`)}}</div>
-      </q-card-section>
+      </q-bar>
       <div v-show="disableSubmit" class="justify-center content-center text-center text-red">
         <b>{{t(`${TRANC_PREFIX}.not_valid`)}}</b>
       </div>

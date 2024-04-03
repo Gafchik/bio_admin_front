@@ -44,6 +44,11 @@ export default [
         component: News,
         name: 'news',
     },
+    {
+        path: '/gallery',
+        component: Gallery,
+        name: 'gallery',
+    },
     ///////=============
     {
         path: '/gallery',

@@ -1,0 +1,35 @@
+{
+  "title": "Gallery",
+  "table_headers": {
+    "id": "id",
+    "name": "Name",
+    "status": "Status",
+    "action": "Action"
+  },
+  "dialogue": {
+    "edit_title": "Editing Album",
+    "add_title": "Adding an Album",
+    "status": "Status",
+
+    "image": "Image path",
+    "name": "Name",
+    "not_valid": "Not all fields are filled in!"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Deleting an Album",
+      "text": "Are you sure you want to delete the album?",
+      "success": "Album response successfully deleted"
+    },
+    "edit": {
+      "title": "Saving changes",
+      "text": "Are you sure you want to save your Album changes?",
+      "success": "Album successfully modified"
+    },
+    "add": {
+      "title": "Saving a new album",
+      "text": "Are you sure you want to add an album?",
+      "success": "Album added successfully"
+    }
+  }
+}

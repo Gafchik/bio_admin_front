@@ -55,6 +55,11 @@ export default [
                 route_name: 'news',
                 icon: 'library_books'
             },
+            {
+                label: `${TRANC_PREFIX}.gallery`,
+                route_name: 'gallery',
+                icon: 'photo_library'
+            },
         ]
     },
 ]

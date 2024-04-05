@@ -6,6 +6,18 @@ import {useDialogConfirmStore} from "@/store/common/dialog-confirm.js";
 import {useI18n} from "vue-i18n";
 
 const TRANC_PREFIX = 'pages.gallery'
+const DEF_EDIT_ITEM = {
+    id_album: 0,
+    category_image: '',
+    status: 1,
+    position: 0,
+    name_ru: '',
+    name_uk: '',
+    name_en: '',
+    name_ge: '',
+    is_image: true,
+    items: [],
+}
 export const useGalleryStore = defineStore('useGalleryStore', () =>{
     const {t} = useI18n()
     const appStore = useAppStore()
@@ -13,6 +25,8 @@ export const useGalleryStore = defineStore('useGalleryStore', () =>{
     const {axios,currentLocale} = storeToRefs(appStore)
     const {openDialogConfirm} = useDialogConfirmStore()
     const albums = ref([])
+    const editDialog = ref(false)
+    const editItem = ref(DEF_EDIT_ITEM)
     async function getAlbums(){
         return await axios.value.post('/api/gallery/get-items')
             .then(response => {
@@ -20,8 +34,39 @@ export const useGalleryStore = defineStore('useGalleryStore', () =>{
             })
             .catch(error => {});
     }
-    function editAlbum(){
-
+    async function editAlbum(item){
+        await axios.value.post('/api/gallery/get-items-album',{id: item.id_album})
+            .then(response => {
+                editItem.value = response.data.data
+                editItem.value.status = !!editItem.value.status
+                editItem.value.is_image = !!editItem.value.is_image
+                editItem.value.items.forEach((i) => {
+                    i.status = !!i.status
+                })
+                editDialog.value = true
+            })
+            .catch(error => {});
+    }
+    function closeEditDialog(){
+        editDialog.value = false
+        editItem.value = DEF_EDIT_ITEM
+    }
+    function saveEditItem(){
+        openDialogConfirm({
+            title: t(`${TRANC_PREFIX}.confirm.edit.title`),
+            text: t(`${TRANC_PREFIX}.confirm.edit.text`,),
+            func: saveEditItemAsync,
+            funcParams: editItem.value
+        })
+    }
+    async function saveEditItemAsync(item){
+        await axios.value.post('/api/gallery/edit-items-album',item)
+            .then(response => {
+                showInfoMassage( t(`${TRANC_PREFIX}.confirm.edit.success`))
+                getAlbums()
+                closeEditDialog()
+            })
+            .catch(error => {});
     }
     function deleteAlbum(){
 
@@ -30,6 +75,6 @@ export const useGalleryStore = defineStore('useGalleryStore', () =>{
 
     }
     return {
-        getAlbums,albums,editAlbum, deleteAlbum,openAddDialog
+        getAlbums,albums,editAlbum, deleteAlbum,openAddDialog,closeEditDialog,editItem,editDialog,saveEditItem
     }
 })

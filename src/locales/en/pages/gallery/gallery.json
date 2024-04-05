@@ -1,12 +1,23 @@
 {
   "title": "Gallery",
+  "album_name": "Album name",
+  "not_valid": "Not all fields are filled in!",
+  "album_status": "Album status",
+  "album_image": "Album cover",
+  "is_image": "Photo album",
+  "is_video":"Album with video",
+  "items": "Album Contents",
+  "image": "Image path",
+  "video": "Video link",
+  "status": "Status",
+  "empty_lang": "All",
   "table_headers": {
     "id": "id",
     "name": "Name",
     "status": "Status",
     "action": "Action"
   },
-  "dialogue": {
+  "dialog": {
     "edit_title": "Editing Album",
     "add_title": "Adding an Album",
     "status": "Status",

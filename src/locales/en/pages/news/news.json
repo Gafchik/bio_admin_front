@@ -9,7 +9,7 @@
     "status": "Status",
     "action": "Action"
   },
-  "dialogue": {
+  "dialog": {
     "edit_title": "Editing news",
     "add_title": "Adding news",
     "status": "Status",

@@ -14,7 +14,7 @@ const TRANC_PREFIX = 'pages.login'
   <div>
     <Goggle2FacDialog/>
   </div>
-  <q-card class="my-card q-mt-md" style="width: 50%">
+  <q-card class="my-card q-mt-md" :style="$q.platform.is.desktop ? 'width: 50%;' : 'width: 80%;'">
     <q-card-section>
       <div class="text-h6">{{t(`${TRANC_PREFIX}.header`)}}</div>
     </q-card-section>

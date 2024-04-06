@@ -5,6 +5,7 @@ import {useI18n} from "vue-i18n";
 import {useAppStore} from "@/store/app-store.js";
 import {useGalleryStore} from "@/store/pages/Gallery/gallery-store.js";
 import EditGalleryDialog from "@/components/pages/main-menu/Gallery/EditGalleryDialog.vue";
+import AddGalleryDialog from "@/components/pages/main-menu/Gallery/AddGalleryDialog.vue";
 const galleryStore = useGalleryStore()
 const {getAlbums,editAlbum, deleteAlbum,openAddDialog} = galleryStore
 const {albums} = storeToRefs(galleryStore)
@@ -150,6 +151,7 @@ const columns = computed(() => {
       </template>
     </q-table>
     <EditGalleryDialog/>
+    <AddGalleryDialog/>
   </div>
 </template>
 

@@ -9,8 +9,8 @@ import {useGalleryStore} from "@/store/pages/Gallery/gallery-store.js";
 const {t} = useI18n()
 
 const galleryStore = useGalleryStore()
-const {editItem,editDialog} = storeToRefs(galleryStore)
-const {closeEditDialog,saveEditItem} = galleryStore
+const {addItem,addDialog} = storeToRefs(galleryStore)
+const {closeAddDialog,saveAddItem} = galleryStore
 const appStore = useAppStore()
 const {currentLocale, isLoading} = storeToRefs(appStore)
 const {openElFinderDialog} = appStore
@@ -30,67 +30,70 @@ const emptyAlbumItem = {
 function changePreview(name, value) {
   if(!!value){
     if (!value.startsWith('/')) {
-      editItem.value[name] = '/' + value;
+      addItem.value[name] = '/' + value;
     }
   }
 }
 function changePreviewArrays(index,value){
   if(!!value){
     if (!value.startsWith('/')) {
-      editItem.value.items[index].image = '/' + value;
+      addItem.value.items[index].image = '/' + value;
     }
   }
 }
 const disableSubmit = computed(() => {
   let allFieldEmpty = true
-  let field = editItem.value.is_image ? 'image' : 'video'
-  editItem.value.items.forEach(i => {
+  let field = addItem.value.is_image ? 'image' : 'video'
+  addItem.value.items.forEach(i => {
     if(i[field] !== '' && i[field] !== '/' && !!i[field]){
       allFieldEmpty = false
     }
   })
-  return !editItem.value.name_ru
-      || !editItem.value.name_en
-      || !editItem.value.name_ge
-      || !editItem.value.name_uk
-      || (editItem.value.category_image === '/' || editItem.value.category_image === '' || !editItem.value.category_image)
+  return !addItem.value.name_ru
+      || !addItem.value.name_en
+      || !addItem.value.name_ge
+      || !addItem.value.name_uk
+      || (addItem.value.category_image === '/' || addItem.value.category_image === '' || !addItem.value.category_image)
       || allFieldEmpty
 })
 watch(
-    () => editItem.value.category_image,
+    () => addItem.value.category_image,
     (newValue, oldValue) => changePreview('category_image',newValue),
 );
 watch(
-    () => editItem.value.items,
+    () => addItem.value.items,
     (newValue, oldValue) => {
-        newValue.forEach(i => {
-          let index = editItem.value.items.indexOf(i)
-          changePreviewArrays(index,i.image)
-        })
+      newValue.forEach(i => {
+        let index = addItem.value.items.indexOf(i)
+        changePreviewArrays(index,i.image)
+      })
     },
     {
       deep: true,
     }
 );
 function deleteItemFromAlbum(item){
-  let index = editItem.value.items.indexOf(item)
-  editItem.value.items.splice(index, 1);
+  let index = addItem.value.items.indexOf(item)
+  addItem.value.items.splice(index, 1);
 }
 function addAlbumItem(){
-  editItem.value.items.push({...emptyAlbumItem})
+  addItem.value.items.push({...emptyAlbumItem})
+}
+function changeAlbumType(){
+  addItem.value.items = [{...emptyAlbumItem}]
 }
 </script>
 
 <template>
-  <q-dialog v-model="editDialog" maximized>
+  <q-dialog v-model="addDialog" maximized>
     <q-card>
       <q-bar class="bg-indigo-7 row items-center q-pb-none">
         <div class="text-h6">
-          {{ t(`${TRANC_PREFIX}.dialog.edit_title`) }}
+          {{ t(`${TRANC_PREFIX}.dialog.add_title`) }}
         </div>
         <q-space/>
         <q-btn
-            @click="closeEditDialog"
+            @click="closeAddDialog"
             icon="close"
             flat
             color="red"/>
@@ -119,34 +122,34 @@ function addAlbumItem(){
               <q-input
                   filled
                   :rules="[val => !!val || t('app.required')]"
-                  v-model="editItem['name_'+tabPanel]"
+                  v-model="addItem['name_'+tabPanel]"
                   :label="t(`${TRANC_PREFIX}.album_name`)"/>
             </div>
             <div v-show="tabPanel === BASE_SETTING">
               <div class="text-center">
-                <q-img fit="fill" style="width: 50%; height: auto" :src="VITE_BASE_FILE_URL+editItem.category_image"/>
+                <q-img fit="fill" style="width: 50%; height: auto" :src="VITE_BASE_FILE_URL+addItem.category_image"/>
               </div>
               <q-input
                   filled
                   class="q-my-lg"
-                  v-model="editItem.category_image"
+                  v-model="addItem.category_image"
                   :rules="[val => val !== '/' || t('app.required')]"
                   :label="t(`${TRANC_PREFIX}.album_image`)"
-                  >
+              >
                 <template v-slot:append>
                   <q-icon name="folder_open" @click="openElFinderDialog"/>
                 </template>
               </q-input>
               <q-toggle
-                  v-model="editItem.status"
+                  v-model="addItem.status"
                   :label="t(`${TRANC_PREFIX}.album_status`)"/>
-              <q-toggle disable
-                  v-model="editItem.is_image"
-                  :label="t(`${TRANC_PREFIX}.${editItem.is_image ? 'is_image' : 'is_video'}`)"/>
+              <q-toggle @update:model-value="changeAlbumType"
+                        v-model="addItem.is_image"
+                        :label="t(`${TRANC_PREFIX}.${addItem.is_image ? 'is_image' : 'is_video'}`)"/>
               <div class="text-center">{{t(`${TRANC_PREFIX}.items`)}}</div>
               <q-separator />
-              <div v-for="item in editItem.items">
-                <div class="row justify-between" v-if="editItem.is_image">
+              <div v-for="item in addItem.items">
+                <div class="row justify-between" v-if="addItem.is_image">
                   <div :style="$q.platform.is.desktop ?'width: 70%;': 'width: 70%;'" class="row justify-between items-center">
                     <q-input
                         filled
@@ -163,13 +166,13 @@ function addAlbumItem(){
                           v-model="item.status"
                           :label="t(`${TRANC_PREFIX}.status`)"/>
                       <q-btn
-                          v-show="editItem.items.length > 1"
+                          v-show="addItem.items.length > 1"
                           @click="deleteItemFromAlbum(item)"
                           icon="delete"
                           flat
                           color="red"/>
                       <q-btn
-                          v-show="editItem.items.indexOf(item) === editItem.items.length-1"
+                          v-show="addItem.items.indexOf(item) === addItem.items.length-1"
                           @click="addAlbumItem"
                           icon="add"
                           flat
@@ -184,7 +187,7 @@ function addAlbumItem(){
                       :src="VITE_BASE_FILE_URL+item.image"/>
                 </div>
 
-                <div class="row justify-between" v-if="!editItem.is_image">
+                <div class="row justify-between" v-if="!addItem.is_image">
                   <div class="full-width row wrap justify-between items-center content-center">
                     <q-input
                         filled
@@ -226,7 +229,7 @@ function addAlbumItem(){
                           v-model="item.status"
                           :label="t(`${TRANC_PREFIX}.status`)"/>
                       <q-btn
-                          v-show="editItem.items.length > 1"
+                          v-show="addItem.items.length > 1"
                           @click="deleteItemFromAlbum(item)"
                           icon="delete"
                           class="q-pa-none q-mx-md"
@@ -234,7 +237,7 @@ function addAlbumItem(){
                           color="red"/>
                       <q-btn
                           class="q-pa-none"
-                          v-show="editItem.items.indexOf(item) === editItem.items.length-1"
+                          v-show="addItem.items.indexOf(item) === addItem.items.length-1"
                           @click="addAlbumItem"
                           icon="add"
                           flat
@@ -250,14 +253,14 @@ function addAlbumItem(){
 
       <q-card-actions align="right">
         <q-btn
-            @click="closeEditDialog"
+            @click="closeAddDialog"
             icon="close"
             flat
             color="red"/>
         <q-btn
             :disable="disableSubmit"
             icon="done"
-            @click="saveEditItem"
+            @click="saveAddItem"
             flat
             color="positive"/>
       </q-card-actions>

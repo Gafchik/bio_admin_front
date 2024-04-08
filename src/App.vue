@@ -4,6 +4,7 @@ import Drawer from "@/components/core/Drawer.vue";
 import LoadingDialog from "@/components/common/LoadingDialog.vue";
 import ElFinder from "@/components/common/ElFinder.vue";
 import DialogConfirm from "@/components/common/DialogConfirm.vue"
+import MyQuillEditorImageDialog from "@/components/common/MyQuill/MyQuillEditorImageDialog.vue";
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import DialogConfirm from "@/components/common/DialogConfirm.vue"
   <LoadingDialog/>
   <ElFinder/>
   <DialogConfirm/>
+  <MyQuillEditorImageDialog/>
 </template>
 
 <style scoped>

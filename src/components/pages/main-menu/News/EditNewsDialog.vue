@@ -1,5 +1,5 @@
 <script setup>
-import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
+import MyQuillEditor from "@/components/common/MyQuill/MyQuillEditor.vue";
 import { removeSpaces, removeQueryParams } from '@/filters/filters.js';
 import {useNewsStore} from "@/store/pages/News/news-store.js";
 import {storeToRefs} from "pinia";

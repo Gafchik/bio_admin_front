@@ -49,19 +49,11 @@ export default [
         component: Gallery,
         name: 'gallery',
     },
-    ///////=============
-    {
-        path: '/gallery',
-        component: Gallery,
-        name: 'gallery',
-    },
-
     {
         path: '/about-us',
         component: AboutUs,
         name: 'about_us',
     },
-
     {
         path: '/store',
         component: Store,

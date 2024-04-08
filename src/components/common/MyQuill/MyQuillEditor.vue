@@ -1,11 +1,16 @@
 <script setup>
+import {useMyQuillStore} from "@/store/common/my-quill-store.js";
 import {useAppStore} from "@/store/app-store.js";
 import {onMounted, ref, toRef, toRefs} from "vue";
 import { removeQueryParams } from '@/filters/filters.js';
 import {Quill, QuillEditor} from '@vueup/vue-quill'
 const appStore = useAppStore()
+const quillStore = useMyQuillStore()
+const {imageObject} = storeToRefs(quillStore)
+const {openImageDialog} = quillStore
 const {openElFinderDialog} = appStore
 import {useI18n} from "vue-i18n";
+import {storeToRefs} from "pinia";
 const {t} = useI18n()
 const Block = Quill.import('blots/block');
 Block.tagName = 'DIV';
@@ -32,23 +37,35 @@ const prop = defineProps({
   }
 })
 const quillRef = ref(null);
-
-function quill_img_handler() {
-  const url = import.meta.env.VITE_BASE_FILE_URL+'/';
-  // const path = prompt(t('app.imagePath'));
-  const path = removeQueryParams(prompt(t('app.imagePath')))
-  if (path) {
-    const range = quillRef.value.getSelection();
-    const rangeIndex = range ? range.index : 0
-    quillRef.value.insertEmbed(rangeIndex, 'image', url+path);
-    quillRef.value.setSelection(rangeIndex + 1);
+import { EventBus } from 'quasar'
+const event = new EventBus()
+event.on('readyImage'+prop.nameRef, (imageObject,rangeIndex) => {
+  const url = import.meta.env.VITE_BASE_FILE_URL;
+  imageObject.path = removeQueryParams(imageObject.path)
+  quillRef.value.insertEmbed(rangeIndex, 'image', url+imageObject.path);
+  if(!!imageObject.width){
+    quillRef.value.formatText(rangeIndex, 1, 'width', imageObject.width+'px');
   }
+  quillRef.value.setSelection(rangeIndex + 1)
+})
+function quill_img_handler() {
+  const cursor = quillRef.value.getSelection();
+  const rangeIndex = cursor ? cursor.index : 0
+  openImageDialog(event,prop.nameRef,rangeIndex)
+
+  // const url = import.meta.env.VITE_BASE_FILE_URL;
+  // // const path = prompt(t('app.imagePath'));
+  // const path = removeQueryParams(prompt(t('app.imagePath')))
+  // if (path) {
+  //   const range = quillRef.value.getSelection();
+  //   const rangeIndex = range ? range.index : 0
+  //   quillRef.value.insertEmbed(rangeIndex, 'image', url+path);
+  //   quillRef.value.setSelection(rangeIndex + 1);
+  // }
 }
+
 function onQuillReady(quillInstance) {
   quillRef.value = quillInstance;
-}
-function showFileDialog() {
-  openElFinderDialog()
 }
 function test(){
   console.log(model.value)
@@ -114,10 +131,6 @@ function test(){
         <select class="ql-font"></select>
         <select class="ql-align"></select>
 
-        <!-- Кнопка для вызова диалога -->
-        <button class="ql-custom-button" @click="showFileDialog">
-          <i class="fas fa-folder-open"></i>
-        </button>
       </div>
     </template>
   </QuillEditor>

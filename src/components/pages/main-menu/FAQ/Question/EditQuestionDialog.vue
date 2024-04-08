@@ -4,7 +4,7 @@ import { useFaqStore } from '@/store/pages/FAQ/faq-store.js'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 import {useAppStore} from "@/store/app-store.js";
-import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
+import MyQuillEditor from "@/components/common/MyQuill/MyQuillEditor.vue";
 const {t} = useI18n()
 const faqStore = useFaqStore()
 const {saveEditQuestion,closeEditQuestionDialog} = faqStore

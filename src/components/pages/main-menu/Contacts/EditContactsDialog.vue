@@ -5,7 +5,7 @@ import {computed, ref} from 'vue'
 import { storeToRefs } from 'pinia'
 import {useI18n} from "vue-i18n";
 import {useContactsStore} from "@/store/pages/Contacts/contacts-store.js";
-import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
+import MyQuillEditor from "@/components/common/MyQuill/MyQuillEditor.vue";
 const {t} = useI18n()
 const contactsStore = useContactsStore()
 const {closeEditItemFn,saveEditItemFn} = contactsStore

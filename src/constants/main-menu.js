@@ -60,6 +60,11 @@ export default [
                 route_name: 'gallery',
                 icon: 'photo_library'
             },
+            {
+                label: `${TRANC_PREFIX}.about_us`,
+                route_name: 'about_us',
+                icon: 'person'
+            },
         ]
     },
 ]

@@ -4,9 +4,9 @@ import { useAppStore } from '@/store/app-store.js'
 import { storeToRefs } from 'pinia'
 import { useI18n } from "vue-i18n";
 import {useBaseOnlyTextStore} from "@/store/common/base-only-text-store.js";
-import {ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import {ARRAY_FULL_LOCALE} from "@/constants/locales.js";
-import MyQuillEditor from "@/components/common/MyQuillEditor.vue";
+import MyQuillEditor from "@/components/common/MyQuill/MyQuillEditor.vue";
 const {t} = useI18n()
 const appStore = useAppStore()
 const {currentLocale} = storeToRefs(appStore)

@@ -15,5 +15,9 @@
   "path": "Path",
   "width": "Width",
   "height": "Height",
-  "field_required": "Not all fields are filled"
+  "field_required": "Not all fields are filled",
+  "date": {
+    "from": "Date from",
+    "to": "Date until"
+  }
 }

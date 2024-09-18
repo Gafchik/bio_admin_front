@@ -54,6 +54,17 @@ export const useAppStore = defineStore('useAppStore', () => {
                         position: 'top',
                         html: true,
                     });
+                } else if (error.response.status === 403) {
+                    // Ошибка с ответом от сервера
+                    const errorMessage = error.response.data.textError;
+                    Notify.create({
+                        color: 'negative',
+                        message: errorMessage,
+                        progress: true,
+                        position: 'top',
+                        html: true,
+                    });
+                    redirectTo('home')
                 } else if (error.response) {
                     // Ошибка с ответом от сервера
                     const errorMessage = error.response.data.textError;

@@ -1,0 +1,38 @@
+{
+  "title": "Transactions",
+  "type": "Type",
+  "statuses": "Status",
+  "t_id": "Transaction ID",
+  "table_headers": {
+    "id": "ID",
+    "created_at": "Created",
+    "email": "E-mail",
+    "phone": "Phone",
+    "type": "Type",
+    "status": "Status",
+    "tree_count": "Trees",
+    "total": "Total amount",
+    "amount": "Amount",
+    "commission": "Commission $",
+    "promocode": "Promo code",
+    "exchange_currency": "Currency",
+    "exchange_rate": "Rate",
+    "payment_system": "Payment system"
+  },
+  "detail": {
+    "title": "Transaction details",
+    "table_headers": {
+      "id": "ID",
+      "from_user": "From user",
+      "to_user": "To user",
+      "data": "Trees",
+      "created_at": "Created",
+      "total": "Total amount",
+      "amount": "Amount",
+      "commission": "Commission $"
+    }
+  },
+  "chart": {
+    "title": "Chart"
+  }
+}

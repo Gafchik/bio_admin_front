@@ -1,0 +1,38 @@
+{
+  "title": "Транзакции",
+  "type": "Тип",
+  "statuses": "Статус",
+  "t_id": "ID Транзакции",
+  "table_headers": {
+    "id": "ID",
+    "created_at": "Создано",
+    "email": "E-mail",
+    "phone": "Телефон",
+    "type": "Тип",
+    "status": "Статус",
+    "tree_count": "Деревья",
+    "total": "Общая сумма",
+    "amount": "Сумма",
+    "commission": "Комиссия $",
+    "promocode": "Промокод",
+    "exchange_currency": "Валюта",
+    "exchange_rate": "Курс",
+    "payment_system": "Пл. система"
+  },
+  "detail": {
+    "title": "Детали транзакции",
+    "table_headers": {
+      "id": "ID",
+      "from_user": "От пользователя",
+      "to_user": "К пользователю",
+      "data": "Деревья",
+      "created_at": "Создано",
+      "total": "Общая сумма",
+      "amount": "Сумма",
+      "commission": "Комиссия $"
+    }
+  },
+  "chart": {
+    "title": "График"
+  }
+}

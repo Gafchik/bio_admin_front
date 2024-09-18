@@ -65,6 +65,11 @@ export default [
                 route_name: 'about_us',
                 icon: 'person'
             },
+            {
+                label: `${TRANC_PREFIX}.transactions`,
+                route_name: 'transactions',
+                icon: 'sync_alt'
+            },
         ]
     },
 ]

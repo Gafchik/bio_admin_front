@@ -10,6 +10,7 @@ const pinia = createPinia()
 import i18n from "../src/modules/i18n.js"
 // import { CKEditor } from '@ckeditor/ckeditor5-vue';
 import router from "@/routes/router.js"
+import VueApexCharts from "vue3-apexcharts";
 
 import App from './App.vue'
 const myApp = createApp(App)
@@ -22,6 +23,7 @@ myApp.use(pinia)
     .component('QuillEditor', QuillEditor)
     .use(i18n)
     .use(VueCookies)
+    .use(VueApexCharts)
     // .use(CKEditor)
     .use(router)
     .use(Quasar, {

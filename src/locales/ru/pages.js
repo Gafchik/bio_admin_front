@@ -5,6 +5,7 @@ import BaseOnlyTextPages from "@/locales/ru/pages/BaseOnlyTextPages/base-only-te
 import news from "@/locales/ru/pages/news/news.json"
 import gallery from "@/locales/ru/pages/gallery/gallery.json"
 import transactions from "@/locales/ru/pages/transactions/transactions.json"
+import question from "@/locales/ru/pages/question/question.json"
 export default {
     faq: faq,
     login: login,
@@ -13,4 +14,5 @@ export default {
     news: news,
     gallery: gallery,
     transactions: transactions,
+    question: question,
 }

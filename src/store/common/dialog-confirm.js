@@ -8,15 +8,17 @@ export const useDialogConfirmStore = defineStore('dialogConfirmStore',{
             text: '',
             func: DEFAULT_FUNCTION,
             funcParams: {},
+            callbackFunc: DEFAULT_FUNCTION,
         }
     },
     actions: {
-        openDialogConfirm({title,text, func, funcParams}){
+        openDialogConfirm({title,text, func, funcParams, callbackFunc = () => {}}){
             this.title = title
             this.text = text
             this.func = func
             this.isShowDialog = true
             this.funcParams = funcParams
+            this.callbackFunc = callbackFunc
         },
         closeDialogConfirm(){
             this.title = ''
@@ -26,7 +28,7 @@ export const useDialogConfirmStore = defineStore('dialogConfirmStore',{
             this.funcParams = {}
         },
         callFunctionYes(){
-            this.func(this.funcParams);
+            this.func(this.funcParams).then((result) => { this.callbackFunc(result)});
             this.closeDialogConfirm();
         }
     }

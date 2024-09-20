@@ -1,0 +1,29 @@
+{
+  "title": "Вопросы",
+  "table_headers": {
+    "id": "ID",
+    "name": "Имя",
+    "email": "Email",
+    "question": "Вопрос",
+    "answer": "Ответ",
+    "answered_at": "Дата ответа",
+    "created_at": "Дата вопроса"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Удаление вопроса",
+      "text": "Удалить вопрос?",
+      "success": "Вопрос успешно удален"
+    }
+  },
+  "answer": {
+    "title": "Ответ на вопрос",
+    "confirm": {
+      "answer": {
+        "title": "Ответ на ворос",
+        "text": "Ответить вопрос?",
+        "success": "Ответ успешно отправлен!"
+      }
+    }
+  }
+}

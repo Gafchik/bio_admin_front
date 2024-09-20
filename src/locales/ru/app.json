@@ -19,5 +19,28 @@
  "date": {
   "from": "Дата от",
   "to": "Дата до"
+ },
+ "rules": {
+  "basket_Rule": "Нельзя купить, уже продано!",
+  "numericMore" : "{field_name} должно быть больше {more}",
+  "numericMoreOrEqual" : "{field_name} должно быть больше или равно {more}",
+  "numericLessOrEqual" : "{field_name} должно быть меньше или равно {more}",
+  "numericLess" : "{field_name} должно быть меньше {less}",
+  "email_exist": "Такой Email уже используется",
+  "email_exemple": "Введите Email, пример: example{dog}example.com",
+  "confirm_field": "Должно соответствовать полю '{field_name}'",
+  "require": "Поле '{field_name}' обязательное для заполнения",
+  "ldap": {
+   "validate": "Поле ldap не корректно"
+  },
+  "length": {
+   "equal": "Должно равняться {len}",
+   "less": "Должно быть меньше {len}",
+   "lessOrEqual": "Должно быть меньше или равно {len}",
+   "more": "Должно быть больше {len}",
+   "moreOrEqual": "Должно быть больше или равно {len}"
+  },
+  "numeric_value": "Только число",
+  "coordinates_value": "Не верный формат координат (99.9999999)"
  }
 }

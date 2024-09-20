@@ -34,7 +34,7 @@ function search(){
   searchAsync(payload.value)
 }
 function clearDate(){
-  payload.value.dateFromTo =[]
+  payload.value.dateFromTo = []
 }
 const columns = computed(() => {
   return [

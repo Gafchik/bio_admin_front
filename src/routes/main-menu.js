@@ -9,6 +9,7 @@ import FaqQuestion from '@/components/pages/main-menu/FAQ/Question/FaqQuestion.v
 import Store from '@/components/pages/main-menu/Store/Store.vue';
 import Contacts from '@/components/pages/main-menu/Contacts/Contacts.vue';
 import Transactions from '@/components/pages/main-menu/Transactions/Transactions.vue';
+import Question from '@/components/pages/main-menu/Question/Question.vue';
 export default [
     {
         path: '/faq-category',
@@ -64,5 +65,10 @@ export default [
         path: '/transactions',
         component: Transactions,
         name: 'transactions',
+    },
+    {
+        path: '/question',
+        component: Question,
+        name: 'question',
     },
 ];

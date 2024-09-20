@@ -70,6 +70,11 @@ export default [
                 route_name: 'transactions',
                 icon: 'sync_alt'
             },
+            {
+                label: `${TRANC_PREFIX}.question`,
+                route_name: 'question',
+                icon: 'question_mark'
+            },
         ]
     },
 ]

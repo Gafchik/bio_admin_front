@@ -19,5 +19,28 @@
   "date": {
     "from": "Date from",
     "to": "Date until"
+  },
+  "rules": {
+    "basket_Rule": "Can't buy, already sold!",
+    "numericMore" : "{field_name} must be greater than {more}",
+    "numericMoreOrEqual" : "{field_name} must be greater than or equal to {more}",
+    "numericLessOrEqual" : "{field_name} must be less than or equal to {more}",
+    "numericLess" : "{field_name} must be less than {less}",
+    "email_exist": "This Email is already in use",
+    "email_exemple": "Enter Email, example: example{dog}example.com",
+    "confirm_field": "Must match field '{field_name}'",
+    "require": "Field '{field_name}' is required",
+    "ldap": {
+      "validate": "The ldap field is invalid"
+    },
+    "length": {
+      "equal": "Must be equal to {len}",
+      "less": "Must be less than {len}",
+      "lessOrEqual": "Must be less than or equal to {len}",
+      "more": "There should be more {len}",
+      "moreOrEqual": "Must be greater than or equal to {len}"
+    },
+    "numeric_value": "Number only",
+    "coordinates_value": "Invalid coordinate format (99.9999999)"
   }
 }

@@ -4,6 +4,7 @@ import {storeToRefs} from "pinia";
 const appStore = useAppStore()
 const {openElFinderDialog,closeElFinderDialog} = appStore
 const {elFinderDialog} = storeToRefs(appStore)
+const VITE_BASE_FILE_URL = import.meta.env.VITE_BASE_FILE_URL
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const {elFinderDialog} = storeToRefs(appStore)
             color="red"/>
       </q-card-section>
       <q-card-section>
-        <iframe src="https://bio-files.dichajeka.online/" width="100%" height="500px"></iframe>
+        <iframe :src="VITE_BASE_FILE_URL" width="100%" height="500px"></iframe>
       </q-card-section>
     </q-card>
   </q-dialog>

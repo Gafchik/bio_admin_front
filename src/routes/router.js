@@ -5,7 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import {ref,computed} from "vue";
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
-const isLogin = computed(() => cookies.get('jwt'))
+// const isLogin = computed(() => cookies.get('jwt'))
 
 const baseRoutes = [
     {
@@ -30,7 +30,8 @@ const router = createRouter({
     routes
 })
 router.beforeEach( (to, from, next) => {
-    if (!isLogin.value) {
+    let isLogin = cookies.get('jwt')
+    if (!isLogin) {
         if(to.name !== 'login'){
             next({name: 'login'})
         }

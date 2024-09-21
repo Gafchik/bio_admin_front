@@ -13,6 +13,26 @@ export default [
         body: 'link',
         children: [
             {
+                label: `${TRANC_PREFIX}.transactions`,
+                route_name: 'transactions',
+                icon: 'sync_alt'
+            },
+            {
+                label: `${TRANC_PREFIX}.question`,
+                route_name: 'question',
+                icon: 'question_mark'
+            },
+            {
+                label: `${TRANC_PREFIX}.withdraws`,
+                route_name: 'withdraws',
+                icon: 'payments'
+            },
+            {
+                label: `${TRANC_PREFIX}.server_explorer`,
+                route_name: 'server_explorer',
+                icon: 'folder'
+            },
+            {
                 label: `${TRANC_PREFIX}.faq_folder`,
                 icon: 'folder',
                 route_name: '',
@@ -64,16 +84,6 @@ export default [
                 label: `${TRANC_PREFIX}.about_us`,
                 route_name: 'about_us',
                 icon: 'person'
-            },
-            {
-                label: `${TRANC_PREFIX}.transactions`,
-                route_name: 'transactions',
-                icon: 'sync_alt'
-            },
-            {
-                label: `${TRANC_PREFIX}.question`,
-                route_name: 'question',
-                icon: 'question_mark'
             },
         ]
     },

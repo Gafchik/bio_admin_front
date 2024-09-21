@@ -10,6 +10,8 @@ import Store from '@/components/pages/main-menu/Store/Store.vue';
 import Contacts from '@/components/pages/main-menu/Contacts/Contacts.vue';
 import Transactions from '@/components/pages/main-menu/Transactions/Transactions.vue';
 import Question from '@/components/pages/main-menu/Question/Question.vue';
+import Withdraws from '@/components/pages/main-menu/Withdraws/Withdraws.vue';
+import ServerExplorer from '@/components/pages/main-menu/ServerExplorer/ServerExplorer.vue';
 export default [
     {
         path: '/faq-category',
@@ -70,5 +72,15 @@ export default [
         path: '/question',
         component: Question,
         name: 'question',
+    },
+    {
+        path: '/withdraws',
+        component: Withdraws,
+        name: 'withdraws',
+    },
+    {
+        path: '/server-explorer',
+        component: ServerExplorer,
+        name: 'server_explorer',
     },
 ];

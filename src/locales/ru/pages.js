@@ -6,6 +6,7 @@ import news from "@/locales/ru/pages/news/news.json"
 import gallery from "@/locales/ru/pages/gallery/gallery.json"
 import transactions from "@/locales/ru/pages/transactions/transactions.json"
 import question from "@/locales/ru/pages/question/question.json"
+import withdraws from "@/locales/ru/pages/withdraws/withdraws.json"
 export default {
     faq: faq,
     login: login,
@@ -15,4 +16,5 @@ export default {
     gallery: gallery,
     transactions: transactions,
     question: question,
+    withdraws: withdraws,
 }

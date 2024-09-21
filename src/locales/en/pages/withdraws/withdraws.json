@@ -1,0 +1,45 @@
+{
+  "title": "Withdraw money",
+  "table_headers": {
+    "id": "ID",
+    "account_number": "Account number\\Card",
+    "bank": "Bank",
+    "phone": "Phone",
+    "type": "Type",
+    "full_name": "Full name",
+    "date": "Date",
+    "amount": "Amount",
+    "status": "Status"
+  },
+  "type": {
+    "1": "Card",
+    "2": "SWIFT"
+  },
+  "edit": {
+    "title": "Change withdrawal status",
+    "status": "Statuses"
+  },
+  "confirm": {
+    "title": "Change withdrawal status",
+    "text": "Are you sure you want to change the withdrawal status?",
+    "success": "Status successfully changed!" },
+  "info": {
+    "title": "Information",
+    "table_headers": {
+      "id": "ID",
+      "created_at": "Created",
+      "email": "E-mail",
+      "phone": "Phone",
+      "type": "Type",
+      "status": "Status",
+      "tree_count": "Trees",
+      "total": "Total amount",
+      "amount": "Amount",
+      "commission": "Commission $",
+      "promocode": "Promo code",
+      "exchange_currency": "Currency",
+      "exchange_rate": "Rate",
+      "payment_system": "Payment system"
+    }
+  }
+}

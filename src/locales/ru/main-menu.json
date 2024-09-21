@@ -12,5 +12,7 @@
   "gallery":  "Галерея",
   "about_us":  "О нас",
   "transactions": "Транзакции",
-  "question": "Вопросы"
+  "question": "Вопросы",
+  "withdraws": "Вывод денег",
+  "server_explorer": "Обозреватель файлов сервера"
 }

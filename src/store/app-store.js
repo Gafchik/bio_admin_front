@@ -22,7 +22,7 @@ export const useAppStore = defineStore('useAppStore', () => {
     const google2facDialog = ref(false)
     const has2fac = ref(false)
     const disableSubmit = computed(() => !email.value.length || !password.value.length)
-    const { locale } = useI18n();
+    const { locale,t } = useI18n();
     const currentLocale = computed(() => locale.value);
     const localesModel= ref({})
     const elFinderDialog = ref(false)
@@ -53,8 +53,11 @@ export const useAppStore = defineStore('useAppStore', () => {
                         progress: true,
                         position: 'top',
                         html: true,
+                        timeout: 2000
                     });
-                    redirectTo('home')
+                    setTimeout(() => {
+                        redirectTo('home');
+                    }, 2000);
                 } else if (error.response.status === 403) {
                     // Ошибка с ответом от сервера
                     const errorMessage = error.response.data.textError;

@@ -42,5 +42,10 @@
     },
     "numeric_value": "Number only",
     "coordinates_value": "Invalid coordinate format (99.9999999)"
+  },
+  "withdraw_status": {
+    "1": "Confirmed",
+    "0": "Pending",
+    "-1": "Canceled"
   }
 }

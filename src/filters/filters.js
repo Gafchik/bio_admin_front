@@ -6,3 +6,9 @@ export function removeSpaces(value) {
 export function removeQueryParams(value) {
     return value.replace(/\?.*$/, '');
 }
+export function centToDollar(money){
+    if(!!money){
+        return money/100
+    }
+    return 0
+}

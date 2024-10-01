@@ -8,6 +8,7 @@ import transactions from "@/locales/ru/pages/transactions/transactions.json"
 import question from "@/locales/ru/pages/question/question.json"
 import withdraws from "@/locales/ru/pages/withdraws/withdraws.json"
 import roles from "@/locales/ru/pages/roles/roles.json"
+import trees from "@/locales/ru/pages/trees/trees.json"
 export default {
     faq: faq,
     login: login,
@@ -19,4 +20,5 @@ export default {
     question: question,
     withdraws: withdraws,
     roles: roles,
+    trees: trees,
 }

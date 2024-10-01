@@ -23,6 +23,11 @@ export default [
                 icon: 'person'
             },
             {
+                label: `${TRANC_PREFIX}.trees`,
+                route_name: 'trees',
+                icon: 'park'
+            },
+            {
                 label: `${TRANC_PREFIX}.question`,
                 route_name: 'question',
                 icon: 'question_mark'

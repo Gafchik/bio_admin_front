@@ -14,5 +14,6 @@
   "transactions": "Транзакции",
   "question": "Вопросы",
   "withdraws": "Вывод денег",
-  "server_explorer": "Обозреватель файлов сервера"
+  "server_explorer": "Обозреватель файлов сервера",
+  "roles": "Группы"
 }

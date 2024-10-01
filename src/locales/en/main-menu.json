@@ -14,5 +14,6 @@
   "transactions": "Transactions",
   "question": "Question",
   "withdraws": "Withdraws",
-  "server_explorer": "Server File Explorer"
+  "server_explorer": "Server File Explorer",
+  "roles": "Groups"
 }

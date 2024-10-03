@@ -12,6 +12,8 @@ import Transactions from '@/components/pages/main-menu/Transactions/Transactions
 import Question from '@/components/pages/main-menu/Question/Question.vue';
 import Withdraws from '@/components/pages/main-menu/Withdraws/Withdraws.vue';
 import ServerExplorer from '@/components/pages/main-menu/ServerExplorer/ServerExplorer.vue';
+import Roles from '@/components/pages/main-menu/Roles/Roles.vue';
+import Trees from '@/components/pages/main-menu/Trees/Trees.vue';
 export default [
     {
         path: '/faq-category',
@@ -82,5 +84,15 @@ export default [
         path: '/server-explorer',
         component: ServerExplorer,
         name: 'server_explorer',
+    },
+    {
+        path: '/roles',
+        component: Roles,
+        name: 'roles',
+    },
+    {
+        path: '/trees',
+        component: Trees,
+        name: 'trees',
     },
 ];

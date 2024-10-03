@@ -1,0 +1,28 @@
+{
+  "title": "Trees",
+  "plantingDate": "Year of planting",
+  "email": "Owner's email",
+  "uuid": "Tree ID",
+  "table_headers": {
+    "id": "ID",
+    "uuid": "Tree ID",
+    "owner_mail": "Owner",
+    "year": "Year of planting",
+    "season": "Season",
+    "sale_frozen_to": "Sale frozen until",
+    "dividend_frozen_to": "Payment frozen until",
+    "initial_price": "Price of a young tree",
+    "current_price": "Current price"
+  },
+  "edit": {
+    "title": "Editing {id}",
+    "email": "Owner",
+    "sale_frozen_to": "Sale frozen until",
+    "dividend_frozen_to": "Payment frozen until",
+    "confirm": {
+      "title": "Editing",
+      "text": "Are you sure you want to edit tree information?",
+      "success": "Editing successful!"
+    }
+  }
+}

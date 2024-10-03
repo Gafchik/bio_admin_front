@@ -18,6 +18,16 @@ export default [
                 icon: 'sync_alt'
             },
             {
+                label: `${TRANC_PREFIX}.roles`,
+                route_name: 'roles',
+                icon: 'person'
+            },
+            {
+                label: `${TRANC_PREFIX}.trees`,
+                route_name: 'trees',
+                icon: 'park'
+            },
+            {
                 label: `${TRANC_PREFIX}.question`,
                 route_name: 'question',
                 icon: 'question_mark'

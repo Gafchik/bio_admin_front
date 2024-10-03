@@ -1,0 +1,33 @@
+{
+  "title": "Groups",
+  "table_headers": {
+    "id": "ID",
+    "name": "Name",
+    "key": "Key"
+  },
+  "edit": {
+    "title": "Editing {name}",
+    "confirm": {
+      "title": "Editing",
+      "text": "Change permissions for group?",
+      "success": "Changes changed successfully"
+    }
+  },
+  "add": {
+    "title": "Adding group",
+    "key": "Key",
+    "name": "Name",
+    "confirm": {
+      "title": "Adding",
+      "text": "Add new group?",
+      "success": "New group added successfully"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "title": "Deleting",
+      "text": "Delete group?",
+      "success": "Group successfully removed"
+    }
+  }
+}

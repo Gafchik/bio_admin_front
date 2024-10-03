@@ -47,5 +47,11 @@
     "1": "Confirmed",
     "0": "Pending",
     "-1": "Canceled"
+  },
+  "season": {
+    "1": "Winter",
+    "2": "Spring",
+    "3": "Summer",
+    "4": "Autumn"
   }
 }

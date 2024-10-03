@@ -121,6 +121,7 @@ const searchInTable = ref('')
             <q-input
                 borderless
                 dense
+                clearable
                 debounce="300"
                 v-model="searchInTable"
                 :placeholder="t(`app.search`)">

@@ -9,9 +9,8 @@ import {useAppStore} from "@/store/app-store.js";
 const {t} = useI18n()
 const T_PREFIX = 'pages.treestore'
 const treestoreStore = useTreestoreStore()
-const {searchAsync,openDetailDialog} = treestoreStore
+const {searchAsync} = treestoreStore
 const appStore = useAppStore()
-const {showInfoMassage} = appStore
 const {currentLocale} = storeToRefs(appStore)
 const {treestore} = storeToRefs(treestoreStore)
 function dateOptions(date) {
@@ -187,16 +186,6 @@ const columns = computed(() => {
                   <template v-if="col.name === 'action'">
                     <q-item-section>
                       <q-item-label>{{ col.label }}</q-item-label>
-                    </q-item-section>
-
-                  </template>
-                  <template v-else-if="col.name === 'id'">
-                    <q-item-section>
-                      <q-item-label>{{ col.label }}</q-item-label>
-                    </q-item-section>
-                    <q-item-section side>
-                      <a v-if="!!props.row.has_details" href="#" @click.prevent="openDetailDialog(col.value)">{{col.value}}</a>
-                      <q-item-label v-else caption>{{ col.value }}</q-item-label>
                     </q-item-section>
                   </template>
                   <template v-else>

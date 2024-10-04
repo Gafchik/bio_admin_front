@@ -1,0 +1,12 @@
+{
+  "title": "Tree store",
+  "year": "Year",
+  "table_headers": {
+    "id": "ID",
+    "created_at": "Created",
+    "email": "E-mail",
+    "tree_id": "Tree ID",
+    "price": "Sum",
+    "commission": "Commission $"
+  }
+}

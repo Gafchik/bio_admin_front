@@ -18,6 +18,11 @@ export default [
                 icon: 'sync_alt'
             },
             {
+                label: `${TRANC_PREFIX}.treestore`,
+                route_name: 'treestore',
+                icon: 'store'
+            },
+            {
                 label: `${TRANC_PREFIX}.roles`,
                 route_name: 'roles',
                 icon: 'person'

@@ -9,6 +9,7 @@ import FaqQuestion from '@/components/pages/main-menu/FAQ/Question/FaqQuestion.v
 import Store from '@/components/pages/main-menu/Store/Store.vue';
 import Contacts from '@/components/pages/main-menu/Contacts/Contacts.vue';
 import Transactions from '@/components/pages/main-menu/Transactions/Transactions.vue';
+import TreeStore from '@/components/pages/main-menu/TreeStore/TreeStore.vue';
 import Question from '@/components/pages/main-menu/Question/Question.vue';
 import Withdraws from '@/components/pages/main-menu/Withdraws/Withdraws.vue';
 import ServerExplorer from '@/components/pages/main-menu/ServerExplorer/ServerExplorer.vue';
@@ -70,6 +71,12 @@ export default [
         component: Transactions,
         name: 'transactions',
     },
+    {
+        path: '/treestore',
+        component: TreeStore,
+        name: 'treestore',
+    },
+
     {
         path: '/question',
         component: Question,

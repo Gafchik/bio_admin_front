@@ -9,11 +9,15 @@ const {showInfoMassage} = appStore
 const {openDialogConfirm} = useDialogConfirmStore()
 import {useUsersStore} from "@/store/pages/Users/users-store.js";
 import {useDialogConfirmStore} from "@/store/common/dialog-confirm.js";
+import {useRolesStore} from "@/store/pages/Roles/roles-store.js";
 const {t} = useI18n()
 const T_PREFIX = 'pages.users'
 const usersStore = useUsersStore()
 const {getUsersAsync,getStatus,deleteUserAsync,openEditDialogAsync} = usersStore
 getUsersAsync()
+const rolesStore = useRolesStore()
+const {getRolesAsync} = rolesStore
+getRolesAsync()
 const {users} = storeToRefs(usersStore)
 const columns = computed(() => {
   return [

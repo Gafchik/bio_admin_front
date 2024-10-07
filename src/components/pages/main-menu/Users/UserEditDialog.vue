@@ -8,14 +8,18 @@ const {openDialogConfirm} = useDialogConfirmStore()
 import {useUsersStore} from "@/store/pages/Users/users-store.js";
 import rules from "@/rules/rules.js";
 import {useAppStore} from "@/store/app-store.js";
+import {useRolesStore} from "@/store/pages/Roles/roles-store.js";
 const usersStore = useUsersStore()
-const {closeEditDialog,editPersonalDataAsync,getUsersAsync} = usersStore
+const {closeEditDialog,editPersonalDataAsync,getUsersAsync,editRolesAsync} = usersStore
 const {userEditDialog,editUserData} = storeToRefs(usersStore)
 const {t} = useI18n()
 const T_PREFIX = 'pages.users'
 const userEditForm = ref(null)
 const appStore = useAppStore()
 const {showInfoMassage} = appStore
+const rolesStore = useRolesStore()
+const {roles} = storeToRefs(rolesStore)
+
 function closeDialog(){
   closeEditDialog()
 }
@@ -23,6 +27,51 @@ function onSubmit(){
   if(tabModel.value === 'personal'){
     onSubmitFromPersonal()
   }
+  if(tabModel.value === 'roles'){
+    onSubmitFromRoles()
+  }
+}
+function onSubmitFromRoles(){
+  let payloadRoles = []
+  let currenUserRolesIds = editUserData.value.roles.map(role => role.id)
+  roles.value.forEach(role => {
+    if(currenUserRolesIds.includes(role.id)){
+      if(!formField.value.roles[role.id]){
+        payloadRoles.push({
+          id: role.id,
+          action: 'delete',
+        })
+      }
+    }else{
+      if(!!formField.value.roles[role.id]){
+        payloadRoles.push({
+          id: role.id,
+          action: 'add',
+        })
+      }
+    }
+  })
+  if(!!payloadRoles.length){
+    openDialogConfirm({
+      title: t(`${T_PREFIX}.confirm.edit.roles.title`),
+      text: t(`${T_PREFIX}.confirm.edit.roles.text`),
+      func: editRolesAsync,
+      funcParams: {
+        id: editUserData.value.id,
+        roles: payloadRoles,
+      },
+      callbackFunc: (res) => {
+        if (!!res) {
+          showInfoMassage(t(`${T_PREFIX}.confirm.edit.roles.success`))
+          getUsersAsync()
+          closeDialog()
+        }
+      }
+    })
+  }else{
+    showInfoMassage(t(`${T_PREFIX}.edit.no_change`))
+  }
+
 }
 function onSubmitFromPersonal(){
   openDialogConfirm({
@@ -51,7 +100,20 @@ function onSubmitFromPersonal(){
 const formField = ref({})
 function setFormField(dialog){
   if(dialog){
-    formField.value = copyObject({...editUserData.value,newPassword:''})
+    let roleForm = {}
+    let allRoleIds = roles.value.map(role => role.id)
+    editUserData.value.roles.forEach((userRole) => {
+      if(allRoleIds.includes(userRole.id)){
+        roleForm[userRole.id] = true
+      }
+    })
+    allRoleIds.forEach(roleId => {
+      if(!roleForm.hasOwnProperty(roleId)){
+        roleForm[roleId] = false
+      }
+    })
+
+    formField.value = copyObject({...editUserData.value,newPassword:'',roles:roleForm})
   }else{
     formField.value = {}
   }
@@ -82,6 +144,7 @@ const activationArray = computed(() => {
   ]
 })
 watch(() => userEditDialog.value, (value) =>  setFormField(value))
+const test = ref(true)
 </script>
 
 <template>
@@ -193,12 +256,14 @@ watch(() => userEditDialog.value, (value) =>  setFormField(value))
               />
             </q-tab-panel>
             <q-tab-panel name="settings">
+<!--              TODO work with settings-->
               <div class="text-h6">settings</div>
               settings
             </q-tab-panel>
             <q-tab-panel name="roles">
-              <div class="text-h6">roles</div>
-              roles
+              <div v-for="role in roles">
+                <q-checkbox v-model="formField.roles[role.id]" :label="role.name" />
+              </div>
             </q-tab-panel>
           </q-tab-panels>
         </q-card-section>

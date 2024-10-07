@@ -54,8 +54,17 @@ export const useUsersStore = defineStore('useUsersStore', () => {
                 return false
             });
     }
+    async function editRolesAsync(payload){
+        return await axios.value.post('/api/users/edit-roles',payload)
+            .then(response => {
+                return true
+            })
+            .catch(error => {
+                return false
+            });
+    }
     return {
-        getUsersAsync,users,getStatus,deleteUserAsync,userEditDialog,
+        getUsersAsync,users,getStatus,deleteUserAsync,userEditDialog,editRolesAsync,
         editUserData,openEditDialogAsync,closeEditDialog,editPersonalDataAsync,
     }
 })

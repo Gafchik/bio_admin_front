@@ -7,6 +7,8 @@
     "ge": "Georgian",
     "base_setting": "Base"
   },
+  "yes": "Yes",
+  "no": "No",
   "session_daed": "Session lifetime has expired, Refresh the page and log in",
   "server_not_response": "No response from server",
   "request_error": "Error setting up request",
@@ -53,5 +55,9 @@
     "2": "Spring",
     "3": "Summer",
     "4": "Autumn"
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female"
   }
 }

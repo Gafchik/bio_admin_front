@@ -13,6 +13,11 @@ export default [
         body: 'link',
         children: [
             {
+                label: `${TRANC_PREFIX}.users`,
+                route_name: 'users',
+                icon: 'group'
+            },
+            {
                 label: `${TRANC_PREFIX}.transactions`,
                 route_name: 'transactions',
                 icon: 'sync_alt'

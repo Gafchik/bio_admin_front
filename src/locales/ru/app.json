@@ -1,57 +1,63 @@
 {
- "search": "Поиск",
- "locale": {
-  "uk": "Украинский",
-  "ru":"Русский",
-  "en": "Английский",
-  "ge":"Грузинский",
-  "base_setting": "Основное"
- },
- "session_daed": "Закончилось время жизни сессии, Обновите страницу и авторизируйтесь",
- "server_not_response": "Нет ответа от сервера",
- "request_error": "Ошибка настройки запроса",
- "imagePath": "Введите путь к изображения:",
- "required": "Поле обязательно",
- "path": "Путь",
- "width": "Ширина",
- "height": "Высота",
- "field_required": "Не все поля заполнены",
- "date": {
-  "from": "Дата от",
-  "to": "Дата до"
- },
- "rules": {
-  "basket_Rule": "Нельзя купить, уже продано!",
-  "numericMore" : "{field_name} должно быть больше {more}",
-  "numericMoreOrEqual" : "{field_name} должно быть больше или равно {more}",
-  "numericLessOrEqual" : "{field_name} должно быть меньше или равно {more}",
-  "numericLess" : "{field_name} должно быть меньше {less}",
-  "email_exist": "Такой Email уже используется",
-  "email_exemple": "Введите Email, пример: example{dog}example.com",
-  "confirm_field": "Должно соответствовать полю '{field_name}'",
-  "require": "Поле '{field_name}' обязательное для заполнения",
-  "ldap": {
-   "validate": "Поле ldap не корректно"
+  "search": "Поиск",
+  "locale": {
+    "uk": "Украинский",
+    "ru": "Русский",
+    "en": "Английский",
+    "ge": "Грузинский",
+    "base_setting": "Основное"
   },
-  "length": {
-   "equal": "Должно равняться {len}",
-   "less": "Должно быть меньше {len}",
-   "lessOrEqual": "Должно быть меньше или равно {len}",
-   "more": "Должно быть больше {len}",
-   "moreOrEqual": "Должно быть больше или равно {len}"
+  "yes": "Да",
+  "no": "Нет",
+  "session_daed": "Закончилось время жизни сессии, Обновите страницу и авторизируйтесь",
+  "server_not_response": "Нет ответа от сервера",
+  "request_error": "Ошибка настройки запроса",
+  "imagePath": "Введите путь к изображения:",
+  "required": "Поле обязательно",
+  "path": "Путь",
+  "width": "Ширина",
+  "height": "Высота",
+  "field_required": "Не все поля заполнены",
+  "date": {
+    "from": "Дата от",
+    "to": "Дата до"
   },
-  "numeric_value": "Только число",
-  "coordinates_value": "Не верный формат координат (99.9999999)"
- },
- "withdraw_status": {
-  "1": "Подтвержден",
-  "0": "В ожидании",
-  "-1": "Отменен"
- },
- "season": {
-  "1": "Зима",
-  "2": "Весна",
-  "3": "Лето",
-  "4": "Осень"
- }
+  "rules": {
+    "basket_Rule": "Нельзя купить, уже продано!",
+    "numericMore": "{field_name} должно быть больше {more}",
+    "numericMoreOrEqual": "{field_name} должно быть больше или равно {more}",
+    "numericLessOrEqual": "{field_name} должно быть меньше или равно {more}",
+    "numericLess": "{field_name} должно быть меньше {less}",
+    "email_exist": "Такой Email уже используется",
+    "email_exemple": "Введите Email, пример: example{dog}example.com",
+    "confirm_field": "Должно соответствовать полю '{field_name}'",
+    "require": "Поле '{field_name}' обязательное для заполнения",
+    "ldap": {
+      "validate": "Поле ldap не корректно"
+    },
+    "length": {
+      "equal": "Должно равняться {len}",
+      "less": "Должно быть меньше {len}",
+      "lessOrEqual": "Должно быть меньше или равно {len}",
+      "more": "Должно быть больше {len}",
+      "moreOrEqual": "Должно быть больше или равно {len}"
+    },
+    "numeric_value": "Только число",
+    "coordinates_value": "Не верный формат координат (99.9999999)"
+  },
+  "withdraw_status": {
+    "1": "Подтвержден",
+    "0": "В ожидании",
+    "-1": "Отменен"
+  },
+  "season": {
+    "1": "Зима",
+    "2": "Весна",
+    "3": "Лето",
+    "4": "Осень"
+  },
+  "gender": {
+    "male": "Мужской",
+    "female": "Женский"
+  }
 }

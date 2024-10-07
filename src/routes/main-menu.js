@@ -15,6 +15,7 @@ import Withdraws from '@/components/pages/main-menu/Withdraws/Withdraws.vue';
 import ServerExplorer from '@/components/pages/main-menu/ServerExplorer/ServerExplorer.vue';
 import Roles from '@/components/pages/main-menu/Roles/Roles.vue';
 import Trees from '@/components/pages/main-menu/Trees/Trees.vue';
+import Users from '@/components/pages/main-menu/Users/Users.vue';
 export default [
     {
         path: '/faq-category',
@@ -101,5 +102,10 @@ export default [
         path: '/trees',
         component: Trees,
         name: 'trees',
+    },
+    {
+        path: '/users',
+        component: Users,
+        name: 'users',
     },
 ];

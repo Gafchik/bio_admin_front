@@ -5,6 +5,17 @@ export const useTreestoreStore = defineStore('useTreestoreStore', () => {
     const appStore = useAppStore()
     const {axios,currentLocale} = storeToRefs(appStore)
     const treestore = ref([])
+    const plantingDates = ref([])
+    async function getPlantingDatesAsync(){
+        return await axios.value.post('/api/treestore/get-planting-dates-tree-store')
+            .then(response => {
+                plantingDates.value = response.data.data
+                return true
+            })
+            .catch(error => {
+                return false
+            });
+    }
     async function searchAsync(payload){
         return await axios.value.post('/api/treestore/get-treestore',payload)
             .then(response => {
@@ -16,6 +27,6 @@ export const useTreestoreStore = defineStore('useTreestoreStore', () => {
             });
     }
     return {
-        searchAsync,treestore
+        searchAsync,treestore,plantingDates,getPlantingDatesAsync
     }
 })

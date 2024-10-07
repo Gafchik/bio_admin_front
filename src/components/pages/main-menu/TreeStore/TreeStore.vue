@@ -9,17 +9,18 @@ import {useAppStore} from "@/store/app-store.js";
 const {t} = useI18n()
 const T_PREFIX = 'pages.treestore'
 const treestoreStore = useTreestoreStore()
-const {searchAsync} = treestoreStore
 const appStore = useAppStore()
 const {currentLocale} = storeToRefs(appStore)
-const {treestore} = storeToRefs(treestoreStore)
+const {plantingDates,treestore} = storeToRefs(treestoreStore)
+const {getPlantingDatesAsync,searchAsync} = treestoreStore
+getPlantingDatesAsync()
 function dateOptions(date) {
   let today = moment().format('YYYY-MM-DD')
   return moment(date).isSameOrBefore(today)
 }
 const payload = ref({
   dateFromTo: [],
-  year: null,
+  plantingDate: null,
   email: null
 })
 const searchInTable = ref('')
@@ -119,15 +120,12 @@ const columns = computed(() => {
           </div>
 
           <div class="q-mt-sm">
-            <q-input
-                class="q-my-xs"
+            <q-select
                 filled
+                v-model="payload.plantingDate"
+                :options="plantingDates"
                 clearable
-                type="number"
-                v-model="payload.year"
-                :option-label="currentLocale === 'ru' ? 'name_rus' : 'name_eng'"
-                :label="t(`${T_PREFIX}.year`)"
-            />
+                :label="t(`${T_PREFIX}.year`)" />
           </div>
           <div class="q-mt-sm">
             <q-input

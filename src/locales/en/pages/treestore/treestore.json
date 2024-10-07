@@ -1,12 +1,12 @@
 {
-  "title": "Tree store",
-  "year": "Year",
+  "title": "Tree Store",
+  "year": "Year of tree planting",
   "table_headers": {
     "id": "ID",
-    "created_at": "Created",
-    "email": "E-mail",
+    "created_at": "Creation date",
+    "email": "Owner",
     "tree_id": "Tree ID",
-    "price": "Sum",
+    "price": "Amount",
     "commission": "Commission $"
   }
 }

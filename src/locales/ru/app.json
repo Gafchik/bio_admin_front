@@ -59,5 +59,10 @@
   "gender": {
     "male": "Мужской",
     "female": "Женский"
+  },
+  "promo_area": {
+    "firstsale_buy": "Покупка молодых",
+    "express_buy":"Экспресс покупка",
+    "express_gift": "Экспресс дарение"
   }
 }

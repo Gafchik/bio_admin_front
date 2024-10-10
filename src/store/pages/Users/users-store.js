@@ -63,8 +63,17 @@ export const useUsersStore = defineStore('useUsersStore', () => {
                 return false
             });
     }
+    async function editSettingDataAsync(payload){
+        return await axios.value.post('/api/users/edit-setting',payload)
+            .then(response => {
+                return true
+            })
+            .catch(error => {
+                return false
+            });
+    }
     return {
         getUsersAsync,users,getStatus,deleteUserAsync,userEditDialog,editRolesAsync,
-        editUserData,openEditDialogAsync,closeEditDialog,editPersonalDataAsync,
+        editUserData,openEditDialogAsync,closeEditDialog,editPersonalDataAsync,editSettingDataAsync,
     }
 })

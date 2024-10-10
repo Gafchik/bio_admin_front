@@ -1,0 +1,63 @@
+.inner-image :deep(img) {
+  max-width: 100% !important;
+  height: auto !important;
+}
+/*убирает подчеркиваение в ссылке*/
+.link-no-underline {
+  text-decoration: none;
+}
+/*убирает при вставке браузером смену БГ*/
+.input-field :deep(input){
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+}
+.no-border-no-shadow {
+  border: none; /* Убираем границу */
+  box-shadow: none; /* Убираем тень */
+}
+
+.border-shadow{
+  border-radius: 10px;
+  border: 1px; /* Убираем границу */
+  box-shadow: 2px 2px 20px #181f04;
+}
+
+.my-bg-color {
+  background-color: #f5f3e4;
+}
+
+.separator {
+  border-bottom: 2px solid #7ba438; /* Цвет и стиль линии */
+  height: 1px;
+}
+.pulse-animation {
+  border-radius: 10px;
+  /* Устанавливаем начальный стиль для бордера и тени */
+  box-shadow: 0 0 10px rgb(88,156,84,1);
+  /* Настраиваем параметры анимации */
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  /* Определяем анимацию пульсации бордера и тени */
+  from {
+    box-shadow: 0 0 10px rgb(0,0,0,1);
+  }
+  to {
+    /*box-shadow: 1px 1px 30px #b5e617; /* Конечная тень */
+    box-shadow: 0 0 40px rgb(88,156,84,1);
+  }
+}
+
+.input-number-arrow {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+  }
+}

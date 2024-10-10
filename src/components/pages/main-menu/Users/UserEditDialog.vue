@@ -10,7 +10,7 @@ import rules from "@/rules/rules.js";
 import {useAppStore} from "@/store/app-store.js";
 import {useRolesStore} from "@/store/pages/Roles/roles-store.js";
 const usersStore = useUsersStore()
-const {closeEditDialog,editPersonalDataAsync,getUsersAsync,editRolesAsync} = usersStore
+const {closeEditDialog,editPersonalDataAsync,getUsersAsync,editRolesAsync,editSettingDataAsync} = usersStore
 const {userEditDialog,editUserData} = storeToRefs(usersStore)
 const {t} = useI18n()
 const T_PREFIX = 'pages.users'
@@ -30,6 +30,42 @@ function onSubmit(){
   if(tabModel.value === 'roles'){
     onSubmitFromRoles()
   }
+  if(tabModel.value === 'settings'){
+    onSubmitSettingRoles()
+  }
+}
+function onSubmitSettingRoles(){
+  openDialogConfirm({
+    title: t(`${T_PREFIX}.confirm.edit.setting.title`),
+    text: t(`${T_PREFIX}.confirm.edit.setting.text`),
+    func: editSettingDataAsync,
+    funcParams: {
+      id: editUserData.value.id,
+      live_wallet_balance : formField.value.live_wallet_balance,
+      bonus_wallet_balance : formField.value.bonus_wallet_balance,
+      futures_wallet_balance : formField.value.futures_wallet_balance,
+      promocode : formField.value.promocode,
+      promocode_discount : formField.value.promocode_discount,
+      promocode_bonus : formField.value.promocode_bonus,
+      promocode_wallet : formField.value.promocode_wallet,
+      promocode_multiple : formField.value.promocode_multiple,
+      promocode_area : formField.value.promocode_area,
+      promocode_tree_min : formField.value.promocode_tree_min,
+      promocode_tree_max : formField.value.promocode_tree_max,
+      max_number_trees_for_sale : formField.value.max_number_trees_for_sale,
+      shop_commission : formField.value.shop_commission,
+      gift_commission : formField.value.gift_commission,
+      shop_commission_first_sale : formField.value.shop_commission_first_sale,
+      shop_commission_gift_sale : formField.value.shop_commission_gift_sale,
+    },
+    callbackFunc: (res) => {
+      if (!!res) {
+        showInfoMassage(t(`${T_PREFIX}.confirm.edit.setting.success`))
+        getUsersAsync()
+        closeDialog()
+      }
+    }
+  })
 }
 function onSubmitFromRoles(){
   let payloadRoles = []
@@ -98,6 +134,18 @@ function onSubmitFromPersonal(){
   })
 }
 const formField = ref({})
+const INT_SETTINGS_KEYS = [
+  'live_wallet_balance',
+  'bonus_wallet_balance',
+  'futures_wallet_balance',
+  'promocode_tree_min',
+  'promocode_tree_max',
+  'max_number_trees_for_sale',
+  'shop_commission',
+  'gift_commission',
+  'shop_commission_first_sale',
+  'shop_commission_gift_sale',
+]
 function setFormField(dialog){
   if(dialog){
     let roleForm = {}
@@ -113,11 +161,51 @@ function setFormField(dialog){
       }
     })
 
-    formField.value = copyObject({...editUserData.value,newPassword:'',roles:roleForm})
+    let walletForm = {}
+    editUserData.value.wallets.forEach(w => {
+      if(w.type === null){
+        walletForm.live_wallet_balance = w.balance
+      }else if(w.type === 'bonus'){
+        walletForm.bonus_wallet_balance = w.balance
+
+      }else if(w.type === 'futures'){
+        walletForm.futures_wallet_balance = w.balance
+      }
+    })
+    let intSettingsValue = {}
+    INT_SETTINGS_KEYS.forEach(key => {
+
+    })
+    formField.value = copyObject({
+      ...editUserData.value,
+      newPassword: '',
+      roles:roleForm,
+      ...walletForm,
+      promocode_area: JSON.parse(editUserData.value.promocode_area),
+      promocode_multiple: !!editUserData.value.promocode_multiple,
+    })
   }else{
     formField.value = {}
   }
 }
+const PROMOCODE_WALLETS = [
+    'main',
+    'bonus',
+]
+const PROMOCODE_AREA = [
+  {
+    value:'firstsale_buy',
+    text: t(`app.promo_area.firstsale_buy`)
+  },
+  {
+    value:'express_buy',
+    text: t(`app.promo_area.express_buy`)
+  },
+  {
+    value:'express_gift',
+    text: t(`app.promo_area.express_gift`)
+  },
+]
 const tabModel = ref('personal')
 const genders = computed(() => {
   return [
@@ -144,7 +232,6 @@ const activationArray = computed(() => {
   ]
 })
 watch(() => userEditDialog.value, (value) =>  setFormField(value))
-const test = ref(true)
 </script>
 
 <template>
@@ -256,9 +343,188 @@ const test = ref(true)
               />
             </q-tab-panel>
             <q-tab-panel name="settings">
-<!--              TODO work with settings-->
-              <div class="text-h6">settings</div>
-              settings
+              <q-input
+                  clearable
+                  class="input-number-arrow"
+                  :label="t(`${T_PREFIX}.edit.balance`)"
+                  :hint="t(`${T_PREFIX}.edit.wallet_hint`)"
+                  v-model.number="formField.live_wallet_balance"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.requiredWith0(t(`${T_PREFIX}.edit.balance`)),
+                     rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.balance`),0)
+                  ]"
+              />
+              <q-input
+                  clearable
+                  class="input-number-arrow"
+                  :label="t(`${T_PREFIX}.edit.bonus`)"
+                  :hint="t(`${T_PREFIX}.edit.wallet_hint`)"
+                  v-model.number="formField.bonus_wallet_balance"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.requiredWith0(t(`${T_PREFIX}.edit.bonus`)),
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.bonus`),0)
+                  ]"
+              />
+              <q-input
+                  clearable
+                  class="input-number-arrow"
+                  :label="t(`${T_PREFIX}.edit.futures`)"
+                  :hint="t(`${T_PREFIX}.edit.wallet_hint`)"
+                  v-model.number="formField.futures_wallet_balance"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.requiredWith0(t(`${T_PREFIX}.edit.futures`)),
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.futures`),0)
+                  ]"
+              />
+              <q-input
+                  class="q-mt-lg"
+                  filled
+                  type="text"
+                  v-model="formField.promocode"
+                  :label="t(`${T_PREFIX}.edit.promocode`)"
+              />
+              <q-input
+                  class="q-mt-lg"
+                  filled
+                  type="text"
+                  v-model="formField.promocode_discount"
+                  :label="t(`${T_PREFIX}.edit.promocode_discount`)"
+              />
+              <q-input
+                  class="q-mt-lg"
+                  filled
+                  type="text"
+                  v-model="formField.promocode_bonus"
+                  :label="t(`${T_PREFIX}.edit.promocode_bonus`)"
+              />
+              <q-select
+                  class="q-mt-lg"
+                  filled
+                  option-value="value"
+                  option-label="text"
+                  :label="t(`${T_PREFIX}.edit.promocode_wallet`)"
+                  v-model="formField.promocode_wallet"
+                  :options="PROMOCODE_WALLETS"
+              />
+              <q-checkbox
+                  v-model="formField.promocode_multiple"
+                  :label="t(`${T_PREFIX}.edit.promocode_multiple`)"
+              />
+              <q-select
+                  class="q-mt-lg"
+                  filled
+                  emit-value
+                  map-options
+                  option-value="value"
+                  option-label="text"
+                  multiple
+                  :label="t(`${T_PREFIX}.edit.promocode_area`)"
+                  v-model="formField.promocode_area"
+                  :options="PROMOCODE_AREA"
+              />
+              <q-input
+                  clearable
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.promocode_tree_min`)"
+                  v-model.number="formField.promocode_tree_min"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                     rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.promocode_tree_min`),0)
+                  ]"
+              />
+              <q-input
+                  clearable
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.promocode_tree_max`)"
+                  v-model.number="formField.promocode_tree_max"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                     rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.promocode_tree_max`),0)
+                  ]"
+              />
+              <q-input
+                  clearable
+                  placeholder="20"
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.max_number_trees_for_sale`)"
+                  v-model.number="formField.max_number_trees_for_sale"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.max_number_trees_for_sale`),0),
+                    rules.numericLessOrEqual(t(`${T_PREFIX}.edit.max_number_trees_for_sale`),20),
+                  ]"
+              />
+              <q-input
+                  clearable
+                  placeholder="3"
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.shop_commission`)"
+                  v-model.number="formField.shop_commission"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.shop_commission`),0),
+                    rules.numericLessOrEqual(t(`${T_PREFIX}.edit.shop_commission`),100),
+                  ]"
+              />
+              <q-input
+                  clearable
+                  placeholder="3"
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.gift_commission`)"
+                  v-model.number="formField.gift_commission"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.gift_commission`),0),
+                    rules.numericLessOrEqual(t(`${T_PREFIX}.edit.gift_commission`),100),
+                  ]"
+              />
+              <q-input
+                  clearable
+                  placeholder="25"
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.shop_commission_first_sale`)"
+                  v-model.number="formField.shop_commission_first_sale"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.shop_commission_first_sale`),0),
+                    rules.numericLessOrEqual(t(`${T_PREFIX}.edit.shop_commission_first_sale`),100),
+                  ]"
+              />
+              <q-input
+                  clearable
+                  placeholder="25"
+                  class="input-number-arrow q-mt-lg"
+                  :label="t(`${T_PREFIX}.edit.shop_commission_gift_sale`)"
+                  v-model.number="formField.shop_commission_gift_sale"
+                  type="number"
+                  filled
+                  lazy-rules
+                  :rules="[
+                    rules.numericMoreOrEqual(t(`${T_PREFIX}.edit.shop_commission_gift_sale`),0),
+                    rules.numericLessOrEqual(t(`${T_PREFIX}.edit.shop_commission_gift_sale`),100),
+                  ]"
+              />
             </q-tab-panel>
             <q-tab-panel name="roles">
               <div v-for="role in roles">
@@ -286,6 +552,6 @@ const test = ref(true)
   </q-dialog>
 </template>
 
-<style scoped>
-
+<style lang="scss">
+  @import "@sass/common-style.css";
 </style>
